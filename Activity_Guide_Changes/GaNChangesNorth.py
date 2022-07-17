@@ -4,7 +4,7 @@
 # Install Pandas to manage the Excel file and bring the information
 # Import Shutil to remove the directory
 
-import os, time, sys 
+import os
 from deep_translator import GoogleTranslator  
 from docx import Document
 from docx.enum.style import WD_STYLE_TYPE
@@ -12,13 +12,15 @@ from docx.shared import Pt
 from docx.shared import RGBColor
 import pandas as pd
 from shutil import rmtree
-import multiprocessing
-from GaNChangesSouth import *
+
+
+
 
 
 def importNorthData():
     # Define the path for the excel file
-    excelPath = os.path.join(sys.path[0],"GaN_cons_and_dates.xlsx")
+    excelPath = os.getcwd()
+    excelPath = os.path.join(excelPath + "\GaN\Activity_Guide_Changes\GaN_cons_and_dates.xlsx")
 
     # Get Data from the Excel File using Pandas
     # Capitalize  constellations names for a later comparison
@@ -56,14 +58,13 @@ def createNorthDir(year, constellations):
     
     return paths
 
-def createNorthPaths(directories, languages):
-    direcs = directories
-    langs = languages
+def createNorthPaths(directories, languages, latitudes):
 
     dirPaths = []
-    for lang in langs:
-        for direc in direcs:
-            dirPaths.append(direc + "_" + lang)
+    for lang in languages:
+        for direc in directories:
+            for lat in latitudes:
+                dirPaths.append(direc + "_" + lat + "_" + lang)
     return dirPaths
 
 
@@ -83,23 +84,23 @@ def northTranslation(dirPaths):
     #updating northern hemisphere information (constellation, date, text displayed to user)
     northConstellationReplacement = {
             
-            "Catalan" : "Perseus",
+            "Catalan" : "Perseu",
             "chinese (traditional)" : "英仙座",
             "Czech" : "Persea",
             "English" : "Perseus",
-            "Finnish" : "Perseus" ,
+            "Finnish" : "Perseuksen" ,
             "French" : "Persée" ,    
             "Galician" : "Perseo",
             "German" : "Perseus",
-            "Greek" : "Περσεύς",
+            "Greek" : "Περσέα",
             "Indonesian" : "Perseus",
             "Japanese" : "ペルセウス",
-            "Polish" : "Perseusz",
+            "Polish" : "Perseusza",
             "Portuguese" : "Perseu",
             "Romanian" : "Perseu",
             "Serbian" : "Персеус",
-            "Slovak" : "Perseus",
-            "Slovenian" : "Perseus",
+            "Slovak" : "Perzeus",
+            "Slovenian" : "Perzej",
             "Spanish" : "Perseo",
             "Swedish" : "Perseus",
             "Thai" : "เซอุส"
@@ -108,84 +109,84 @@ def northTranslation(dirPaths):
         
     northDateReplacement = {
             
-            "Catalan" : "30 d'octubre al novembre 8 i 29 de novembre de desembre 8",
-            "chinese (traditional)" : "10月30日至11月 8月和11月29日至12月8",
-            "Czech" : "30. října - 8. listopadu a 29. listopadu - 8. prosince",
-            "English" : "Oct. 30-Nov. 8 and Nov. 29-Dec. 8",
-            "Finnish" : "30 lokakuu- 8 marraskuu Ja 29 marraskuu-8 joulukuu" ,
-            "French" : "Du 30 octobre au 8 novembre et du 29 novembre au 8 décembre" ,    
-            "Galician" : "30 de outubro-8 de novembro e 29 de novembro-8 de decembro",
+            "Catalan" : "del 30 d'octubre al 8 de novembre i del 29 de novembre al 8 de desembre",
+            "chinese (traditional)" : "10 月 30 日 - 11 月 8 日和 11 月 29 日 - 12 月 8 日。",
+            "Czech" : "30. října – 8. listopadu a 29. listopadu – 8. prosince.",
+            "English" : "October 30 - November 8 and November 29 - December 8",
+            "Finnish" : "30. lokakuuta - 8. marraskuuta ja 29. marraskuuta - 8. joulukuuta." ,
+            "French" : "30 octobre - 8 novembre et 29 novembre - 8 décembre" ,    
+            "Galician" : "30 de outubro - 8 de novembro e 29 de novembro - 8 de decembro",
             "German" : "30. Oktober - 8. November und 29. November - 8. Dezember",
-            "Greek" : "30 Οκτωβρίου-8 Νοεμβρίου και 29 Νοεμβρίου-8 Δεκεμβρίου",
-            "Indonesian" : "30 Oktober-8 November dan 29 November-8 Desember",
+            "Greek" : "30 Οκτωβρίου - 8 Νοεμβρίου και 29 Νοεμβρίου - 8 Δεκεμβρίου",
+            "Indonesian" : "30 Oktober - 8 November dan 29 November - 8 Desember",
             "Japanese" : "10月30日〜11月8日、11月29日〜12月8日",
-            "Polish" : "30 października - 8 listopada i 29 listopada - 8 grudnia",
-            "Portuguese" : "30 de outubro a 8 de novembro e 29 de novembro a 8 de dezembro",
+            "Polish" : "30 października - 8 listopada i 29 listopada - 8 grudnia.",
+            "Portuguese" : "30 de outubro a 8 de novembro e 29 de novembro a 8 de dezembro.",
             "Romanian" : "30 octombrie-8 noiembrie și 29 noiembrie-8 decembrie",
             "Serbian" : "30. октобра - 8. новембра и 29. новембра - 8. децембра",
             "Slovak" : "30. októbra - 8. novembra a 29. novembra - 8. decembra",
-            "Slovenian" : "30. oktobra - 8. novembra in 29. novembra - 8. decembra",
-            "Spanish" : "Del 30 de octubre al 8 de noviembre y del 29 de noviembre al 8 de diciembre",
-            "Swedish" : "30. októbra - 8. novembra a 29. novembra - 8. decembra",
-            "Thai" : "30 ตุลาคม - 8 พฤศจิกายนและ 29 พฤศจิกายน - 8 ธันวาคม"
+            "Slovenian" : "30. oktober – 8. november in 29. november – 8. december.",
+            "Spanish" : "30 de octubre - 8 de noviembre y 29 de noviembre - 8 de diciembre",
+            "Swedish" : "30 oktober-8 november och 29 november-8 december",
+            "Thai" : "30 ต.ค. - 8 พ.ย. และ 29 พ.ย. - 8 ธ.ค."
                 
             }
 
     northHeadingFirst = {
         "Catalan" : "Dates de la campanya ",
-        "chinese (traditional)": ""  ,
-        "Czech" : "Informace v této příručce jsou určeny pro pozorovací kampaň probíhající od ",
-        "English" : " ",
-        "Finnish" : "",
-        "French" : "Dates à utiliser pour la Campagne ",
-        "Galician" : "Datas da campaña de ",
+        "chinese (traditional)": " 年使用"  ,
+        "Czech" : "Termíny kampaní ",
+        "English" : " Campaign Dates that use the ",
+        "Finnish" : " ",
+        "French" : "Dates de la campagne ",
+        "Galician" : "Campaña ",
         "German" : "Kampagnendaten ",
-        "Greek" : "",
+        "Greek" : "Ημερομηνίες καμπάνιας ",
         "Indonesian" : "Waktu Kampanye ",  
-        "Japanese" : " ：",
-        "Polish" : "",
-        "Portuguese" : "Datas das campanhas de ",
+        "Japanese" : "年キャンペーン期間 (対象：",
+        "Polish" : " Daty kampanii ",
+        "Portuguese" : "Datas da campanha de ",
         "Romanian" : "Perioadele campaniei din ",
         "Serbian" : "Сазвежђе ",
         "Slovak" : "V roku ",
-        "Slovenian" :  "",
-        "Spanish" :  "",
+        "Slovenian" :  "Datumi kampanje ",
+        "Spanish" :  "Fechas de la campaña año ",
         "Swedish" : "Kampanjdatum för ",
-        "Thai" : "กำหนดการในปีพ. ศ. "
+        "Thai" : " วันที่รณรงค์ใช้กลุ่มดาวเพอร"
         }
 
     northHeadingMiddle = {
         "Catalan" : " en què usem la  ",
-        "chinese (traditional)" : "： "  ,
-        "Czech" : ". Při pozorování použijte hvězdy oblohy, které zobrazují",
-        "English" : " Campaign Dates that use ",
-        "Finnish" : " havainnointijaksot vuonna ",
-        "French" : " ",
-        "Galician" : " que usan ",
-        "German" : " für das ",
-        "Greek" : " Ημερομηνίες παρατήρησης για τον  ",
-        "Indonesian" : " untuk ",  
-        "Japanese" : "年キャンペーン期間 (対象：",
-        "Polish" : ": Daty kampanii używające ",
-        "Portuguese" : " que usam ",
+        "chinese (traditional)" : "的活動日期"  ,
+        "Czech" : ", které využívají ",
+        "English" : "",
+        "Finnish" : "havainnointijaksot vuonna ",
+        "French" : " qui utilisent la ",
+        "Galician" : " Datas que utilizan a ",
+        "German" : ", die das ",
+        "Greek" : " που χρησιμοποιούν τον ",
+        "Indonesian" : " yang menggunakan ",  
+        "Japanese" : "",
+        "Polish" : ", które używają ",
+        "Portuguese" : " que usam a ",
         "Romanian" : " pentru ",
         "Serbian" : " током ",
         "Slovak" : " môžete pozorovať ",
-        "Slovenian" :  ": Datumi kampanje za opazovanje ",
-        "Spanish" :  " Fechas de la campaña para ",
+        "Slovenian" :  ", ki uporabljajo ",
+        "Spanish" :  " que utilizan la ",
         "Swedish" : " ",
-        "Thai" : " เซอุส"
+        "Thai" : ""
         }
 
     northHeadingLast = {
-        "Catalan" : " ",
-        "chinese (traditional)" : "年"  ,
-        "Czech" : ".",
+        "Catalan" : ": ",
+        "chinese (traditional)" : ": "  ,
+        "Czech" : ": ",
         "English" : ": ",
         "Finnish" : ": ",
         "French" : ": ",
         "Galician" : ": ",
-        "German" : ": ",
+        "German" : " verwenden: ",
         "Greek" : ": ",
         "Indonesian" : ": ",  
         "Japanese" : ")：、",
@@ -197,7 +198,7 @@ def northTranslation(dirPaths):
         "Slovenian" :  ": ",
         "Spanish" :  ": ",
         "Swedish" : ": ",
-        "Thai" : "ดำเนินโครงการให้เสร็จสมบูรณ์: "
+        "Thai" : ": "
         }
 
     firstParagraphfirst = {
@@ -212,7 +213,7 @@ def northTranslation(dirPaths):
         "German" : "Mach mit an einer weltweiten Kampagne, die schwächsten sichtbaren Sterne zu beobachten und aufzuzeichnen, um die Lichtverschmutzung an einem Ort zu messen. Durch das Auffinden und Beobachten des ",
         "Greek" : "Συμμετέχετε σε μία παγκόσμια καμπάνια για να παρατηρήσετε και να καταγράψετε τη φωτεινότητα των πιο αμυδρά ορατών άστρων σαν μέσο για την μέτρηση της Φωτορρύπανσης σε μία δεδομένη περιοχή. Με τον εντοπισμό και την παρατήρηση του  ",
         "Indonesian" : "Anda sedang berpartisipasi dalam kampanye global pengamatan dan pencatatan penampakan bintang paling redup untuk pengukuran tingkat polusi cahaya di suatu lokasi. Melalui pengamatan dan identifikasi  ",
-        "Japanese" : '街には人工光があふれ、夜空が照らされ、星が見えにくくなってきています。また、無駄・過剰な人工光は、莫大なエネルギーの浪費、生態系への悪影響、人間生活・人体への悪影響をも引き起こしています。この光害（ひかりがい）の問題を啓発する活動に、あなたも参加してみませんか。Globe at Night（グローブ・アット・ナイト）は市民参加型の、夜空の明るさ世界同時観察キャンペーンです。どなたでも簡単に参加できます。決められた日時に屋外に出て夜空を眺め、星の見え方をインターネットで報告するだけ。ぜひあなたも参加して、光害の問題を考えてみませんか。そして、世界中の人と、美しい星空・地球環境への思いを共有しましょう。',
+        "Japanese" : '街には人工光があふれ、夜空が照らされ、星が見えにくくなってきています。また、無駄・過剰な人工光は、莫大なエネルギーの浪費、生態系への悪影響、人間生活・人体への悪影響をも引き起こしています。この光害（ひかりがい）の問題を啓発する活動に、あなたも参加してみませんか。Globe at Night（グローブ・アット・ナイト）は市民参加型の、夜空の明るさ世界同時観察キャンペーンです。どなたでも簡単に参加できます ',
         "Polish" : "Uczestniczysz w ogólnoświatowym przedsięwzięciu, którego celem jest obserwacja i odnotowanie najsłabszych widocznych gwiazd w celu zmierzenia zanieczyszczenia światłem w danym miejscu. Poprzez zlokalizowanie i obserwację  ",
         "Portuguese" : "Está a participar numa campanha global para observar e registar as estrelas mais fracas visíveis como forma de medir a poluição luminosa num determinado local. Localizando e observando a  ",
         "Romanian" : "Prin această activitate participați în cadrul unei campanii globale de observare și consemnare a celor mai slabe stele vizibile ca metodă de măsurare a poluării luminoase dintr-un anumit loc. Localizând și observând  ",
@@ -237,7 +238,7 @@ def northTranslation(dirPaths):
         "German" : " am Nachthimmel und den Vergleich mit den Helligkeitskarten, lernen Menschen auf der ganzen Erde, wie die Lichter in ihrer Gemeinde zur Lichtverschmutzung beitragen. Dein Beitrag zur Online-Datenbank beschreibt den sichtbaren Nachthimmel.",
         "Greek" : " στον νυχτερινό ουρανό καθώς και με την σύγκριση των ανωτέρω με τα διαγράμματα για τα μεγέθη των άστρων,  άνθρωποι από όλον τον κόσμο θα μάθουν πώς τα φώτα στην κοινότητά τους συμβάλλουν στην Φωτορρύπανση. Με την κατάθεση των πορισμάτων τους στην ιστοσελίδα θα δημιουργηθεί ένα αρχείο σχετικά με το τι μπορεί να δει κανείς στον νυχτερινό ουρανό.",
         "Indonesian" : " di langit malam dan membandingkannya dengan peta bintang, masyarakat di seluruh dunia dapat mengetahui dan mempelajari seberapa besar kontribusi cahaya di lingkungannya terhadap polusi cahaya. Kontribusi data anda pada basis data online akan membantu mendokumentasikan langit malam yang tampak di berbagai lokasi.",
-        "Japanese" : "",
+        "Japanese" : "。決められた日時に屋外に出て夜空を眺め、星の見え方をインターネットで報告するだけ。ぜひあなたも参加して、光害の問題を考えてみませんか。そして、世界中の人と、美しい星空・地球環境への思いを共有しましょう。",
         "Polish" : " na nocnym niebie oraz porównanie go do map nieba ludzie z całego świata będą mogli dowiedzieć się jaki wkład światło emitowane przez ich społeczność wnosi do  zanieczyszczenia światłem. To co dodasz do internetowej bazy danych pomoże udokumentować widoczne nocne niebo.",
         "Portuguese" : " no céu noturno e,  comparando-a com cartas estelares, pessoas de todo o mundo aprenderão  como as luzes da sua comunidade contribuem para a poluição luminosa. As suas contribuições para a base de dados on-line irão documentar a visibilidade do céu noturno em todo o mundo.",
         "Romanian" : " pe cerul nopții și comparând-o cu diagramele stelare, oamenii din întreaga lume vor putea afla în ce măsură iluminatul nocturn din comunitatea lor contribuie la poluarea luminoasă. Contribuțiile dumneavoastră la baza de date online vor facilita o documentare globală privind cerul nocturn observabil.",
@@ -261,17 +262,17 @@ def northTranslation(dirPaths):
     northData = importNorthData()
 
 
-    #1date2con3
-    CountryList1 = ("Czech")
-    #1con2year3date
-    CountryList2 = ("chinese (traditional)", "Finnish", "Serbian", "Swedish")
-    #1year2Con3date
-    CountryList3 = ("Chilean_Spanish", "Catalan", "English", "French", "Galician", "German", "Greek", "Indonesian", "Japanese", "Polish", "Portuguese", "Romanian", "Slovak", "Slovenian", "Spanish", "Thai")  #1year2Con3date
-
+    # Organize the Languages by lists to make better translations
+    CountryList1 = ("Catalan", "Chilean_Spanish", "Czech", "French", "Galician", "German", "Greek", "Indonesian", "Polish", "Portuguese", "Romanian",  "Slovak", "Slovenian", "Spanish", "Swedish")
+    CountryList2 = ("chinese (traditional)", "English",  "Japanese", "Thai")
+    CountryList3 = ("Finnish")
+    CountryList4 = ("Serbian")
+    
     # Getting data from the Paths
     languageBase = dirPath.split('_')[-1]
-    constName = dirPath.split('_')[-2]
-    year = dirPath.split('_')[-4]
+    latitude = dirPath.split('_')[-2]
+    constName = dirPath.split('_')[-3]
+    year = dirPath.split('_')[-5]
     thaiYear = int(year)+ 543
 
     #Be sure to change the websites into the word files
@@ -282,7 +283,7 @@ def northTranslation(dirPaths):
     # Define the Word file path as the original file
     wordPath = os.path.abspath("..\Gan\GaN\docs_to_change\GaN2018_ActivityGuide_Perseus_N_")
     workingDoc = openWordDoc1(wordPath + str(languageBase) + ".docx")
-
+    
     # Chinese in not in the dictionary of deep_translator, is better "chinese (traditional)"
     if languageBase != "Chinese":
         languageBase = languageBase
@@ -313,9 +314,20 @@ def northTranslation(dirPaths):
 
 
     #Define the base language in deep_translator and translate it into de destiny language
-    constellationTranslated =GoogleTranslator(source ='english', target = languageBase.lower()).translate(constName +" constellation")
+    if languageBase == "German":
+        constellationTranslated =GoogleTranslator(source ='english', target = languageBase.lower()).translate("constellation " + constName)
+    elif languageBase == "Polish":
+        constellationTranslated =GoogleTranslator(source ='english', target = languageBase.lower()).translate("constellation " + constName)
+    elif languageBase == "Serbian":
+        constellationTranslated =GoogleTranslator(source ='english', target = languageBase.lower()).translate(constName)
+    elif languageBase == "Slovenian":
+        constellationTranslated =GoogleTranslator(source ='english', target = languageBase.lower()).translate("constellation " + constName)
+    elif languageBase == "Swedish":
+        constellationTranslated =GoogleTranslator(source ='english', target = languageBase.lower()).translate("constellation " + constName)
+    else:
+        constellationTranslated =GoogleTranslator(source ='english', target = languageBase.lower()).translate(constName +" constellation")
     dateTranslated = GoogleTranslator(source ='english', target = languageBase.lower()).translate(northData.get(constName))
-
+    
     # Replace the translations in the proper places
     for languageSelected, date in northDateReplacement.items():
         if languageSelected == languageBase:
@@ -326,22 +338,22 @@ def northTranslation(dirPaths):
                     if date in paragraph.text:
                         paragraph.clear()
                         if languageBase in CountryList1:
-                            paragraph.add_run(northHeadingFirst[languageBase]+ dateTranslated +northHeadingMiddle[languageBase]+ constellationTranslated + northHeadingLast[languageBase], style = 'GaNStyle')
+                            paragraph.add_run(northHeadingFirst[languageBase]+ str(year) +northHeadingMiddle[languageBase]+ constellationTranslated + northHeadingLast[languageBase] + dateTranslated + ".", style = 'GaNStyle')
                         elif languageBase in CountryList2:
-                            paragraph.add_run(northHeadingFirst[languageBase]+ constellationTranslated + northHeadingMiddle[languageBase]+ str(year) +northHeadingLast[languageBase]+ dateTranslated + ".", style = 'GaNStyle' )
-                        elif languageBase in CountryList3:
-                            if languageBase != "Thai":      
-                                paragraph.add_run(northHeadingFirst[languageBase]+ str(year) +northHeadingMiddle[languageBase] + constellationTranslated +northHeadingLast[languageBase] + dateTranslated, style = 'GaNStyle')
+                            if languageBase != "Thai": 
+                                paragraph.add_run(str(year) + northHeadingFirst[languageBase]+ constellationTranslated + northHeadingMiddle[languageBase] + northHeadingLast[languageBase]+ dateTranslated + ".", style = 'GaNStyle' )
                             else:
-                                paragraph.add_run(northHeadingFirst[languageBase]+ str(thaiYear) +northHeadingMiddle[languageBase] + constellationTranslated +northHeadingLast[languageBase] + dateTranslated, style = 'GaNStyle')
+                                paragraph.add_run(str(thaiYear) + northHeadingFirst[languageBase]+ constellationTranslated + northHeadingMiddle[languageBase] + northHeadingLast[languageBase]+ dateTranslated + ".", style = 'GaNStyle' )
+                        elif languageBase in CountryList3:     
+                                paragraph.add_run(constellationTranslated + northHeadingFirst[languageBase] + northHeadingMiddle[languageBase] + str(year) + northHeadingLast[languageBase] + dateTranslated + ".", style = 'GaNStyle')
+                        elif languageBase in CountryList4:     
+                                paragraph.add_run(northHeadingFirst[languageBase] + constellationTranslated +  northHeadingMiddle[languageBase] + str(year) + northHeadingLast[languageBase] + dateTranslated + ".", style = 'GaNStyle')        
+                                
                     # Replace only if the constellation's name is in the paragraph
                     else:
                         paragraph.clear()
-                        if(languageBase!= 'Japanese'):
-                            paragraph.add_run(firstParagraphfirst[languageBase] + constellationTranslated + firstParagraphLast[languageBase], style = 'GaNParagraph')
-                        else:
-                            paragraph.add_run(firstParagraphfirst[languageBase] + firstParagraphLast[languageBase] + constellationTranslated, style = 'GaNParagraph')
-                
+                        paragraph.add_run(firstParagraphfirst[languageBase] + constellationTranslated + firstParagraphLast[languageBase], style = 'GaNParagraph')
+
                 if website1 in paragraph.text:
                     newLink = paragraph.text.replace("2018",str(year))
                     paragraph.text = None
@@ -351,58 +363,18 @@ def northTranslation(dirPaths):
                     newLink = paragraph.text.replace("2019",str(year))
                     paragraph.text = None
                     paragraph.add_run(newLink, style = 'GaNLinks')
-
-    #Save a copy with a new name, date and language.
-    dirPath = dirPath.rsplit('_', 1)[0]
-    newWordPath = os.path.join(dirPath + "\GaN_{year}_ActivityGuide_{cons}_".format(year = year, cons = constName) + str(languageBase) + ".docx")
+    
+    #Save a copy with a new constellation name, date and language.
+    dirPath = dirPath.rsplit('_', 2)[0]
+    newWordPath = os.path.join(dirPath + "\GaN_{year}_ActivityGuide_{cons}_lat_".format(year = year, cons = constName) + str(latitude) + "_" + str(languageBase) + ".docx")
     workingDoc.save(newWordPath)
-
+    
     #Print information about the working file on
-    return print("The " + languageBase + " activity guide for the constellation {cons}".format(cons = constName) + " in the north has been completed \n____________________________________________________________________________________________\n")
-
-
-
-if __name__ =='__main__':
-
-    # Start time counter
-    start = time.time()
-
-    # Get the data from the User for north constellations
-    northYear = 2022
-    northConstellations = ["Perseus", "Taurus", "Gemini", "Leo", "Bootes", "Cygnus", "Pegasus", "Orion", "Hercules"]
-    northLanguages = ["Catalan","Chinese", "Czech", "English", "Finnish", "French", "Galician", "German", "Greek", "Indonesian", "Japanese", "Polish", "Portuguese", "Romanian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "Thai"]
+    print("The " + languageBase + " activity guide for the constellation {cons}".format(cons = constName) + " in the latitude {lat}".format(lat = latitude) +" north has been completed \n___________________________________________________________________________________________________________\n")
     
-    # Creating the directories and the Paths for North Constellations
-    northDirectories= createNorthDir(northYear, northConstellations)
-    northPaths = createNorthPaths(northDirectories, northLanguages)
+    # return the new doc path to make a list with it.
+    return newWordPath
 
 
-    # Get the data from the User for south constellations
-    southYear = 2022
-    southConstellations = ["Orion","Canis Major", "Taurus", "Crux", "Leo", "Bootes", "Scorpius", "Hercules", "Sagittarius", "Grus", "Pegasus"]
-    southLanguages = ["English", "French", "Indonesian", "Portuguese", "Spanish",]
-
-    # Creating the directories and the Paths for South Constelllations
-    southDirectories= createSouthDir(southYear, southConstellations)
-    southPaths = createSouthPaths(southDirectories, southLanguages)
-
-    
-    #Call de translation for north constellations function, requiring multiprocessing with Pool
-    pool1 = multiprocessing.Pool(processes = 4)
-    for path in northPaths:
-        pool1.apply_async(northTranslation, args = (path, ))
-    pool1.close()
-    pool1.join()
 
 
-    #Call de translation for north constellations function, requiring multiprocessing with Pool
-    pool2 = multiprocessing.Pool(processes = 4)
-    for path in southPaths:
-        pool2.apply_async(southTranslation, args = (path, ))
-    pool2.close()
-    pool2.join()
-
-
-    # Finishing time counter and getting time of execution
-    finish = time.time() - start
-    print('Execution time: ', time.strftime("%H:%M:%S", time.gmtime(finish)))

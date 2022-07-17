@@ -4,7 +4,7 @@
 # Install Pandas to manage the Excel file and bring the information
 # Import Shutil to remove the directory
 
-import os, sys 
+import os
 from deep_translator import GoogleTranslator  
 from docx import Document
 from docx.enum.style import WD_STYLE_TYPE
@@ -12,12 +12,12 @@ from docx.shared import Pt
 from docx.shared import RGBColor
 import pandas as pd
 from shutil import rmtree
-import multiprocessing
 
 
 def importSouthData():
     # Define the path for the excel file
-    excelPath = os.path.join(sys.path[0],"GaN_cons_and_dates.xlsx")
+    excelPath = os.getcwd()
+    excelPath = os.path.join(excelPath + "\GaN\Activity_Guide_Changes\GaN_cons_and_dates.xlsx")
 
     # Get Data from the Excel File using Pandas
     # Capitalize  constellations names for a later comparison
@@ -55,14 +55,13 @@ def createSouthDir(year, constellations):
     
     return paths
 
-def createSouthPaths(directories, languages):
-    direcs = directories
-    langs = languages
+def createSouthPaths(directories, languages, latitudes):
 
     dirPaths = []
-    for lang in langs:
-        for direc in direcs:
-            dirPaths.append(direc + "_" + lang)
+    for lang in languages:
+        for direc in directories:
+            for lat in latitudes:
+                dirPaths.append(direc + "_" + lat + "_" + lang)
     return dirPaths
 
 
@@ -82,7 +81,7 @@ def southTranslation(dirPaths):
     southConstellationReplacement = {
         "ChileanSpanish" : "Escorpio",
         "English" : "Scorpius",
-        "French" : "Scorpius",
+        "French" : "Scorpion",
         "Indonesian" : "Scorpio",
         "Portuguese" : "Escorpião",
         "Spanish" : "Escorpio"
@@ -92,27 +91,27 @@ def southTranslation(dirPaths):
         "ChileanSpanish" : "Del 4 al 13 de julio y del 2 al 11 de agosto",
         "English" : "July 4-13 and August 2-11",
         "French" : "Du 4 au 13 juillet et du 2 au 11 août",
-        "Indonesian" : "4-13 Juli dan 2-11 Agustus",
-        "Portuguese" : "4 a 13 de julho e 2 a 11 de agosto",
-        "Spanish" : "Del 4 al 13 de julio y del 2 al 11 de agosto"
+        "Indonesian" : "4 Juli - 13 Juli dan 2 Agustus - 11 Agustus",
+        "Portuguese" : "4 a 13 de julho e 2 a 11 de agosto.",
+        "Spanish" : "del 4 al 13 de julio y del 2 al 11 de agosto"
         }
 
     southHeadingFirst = {
         "ChileanSpanish" : "",
-        "English" : "",
-        "French" : "Dates à utiliser pour la Campagne ",
+        "English" : " Campaign Dates that use the ",
+        "French" : "Dates de la campagne ",
         "Indonesian" : "Waktu Kampanye ",
         "Portuguese" : "Datas das campanhas de ",
-        "Spanish" : ""
+        "Spanish" : "Fechas de la campaña año "
         }
 
     southHeadingMiddle = {
         "ChileanSpanish" : " Fechas de campaña para la constelación del ",
-        "English" : " Campaign Dates that use ",
-        "French" : " ",
-        "Indonesian" : " untuk ",
-        "Portuguese" : " que usam ",
-        "Spanish" : " Fechas de campaña para la constelación del "
+        "English" : "",
+        "French" : " qui utilisent la ",
+        "Indonesian" : " yang menggunakan ",
+        "Portuguese" : " que usam a ",
+        "Spanish" : " que utilizan la "
         }
 
     southHeadingLast = {
@@ -155,18 +154,17 @@ def southTranslation(dirPaths):
     southData = importSouthData()
 
 
-    #1date2con3
-    CountryList1 = ("Czech")
-    #1con2year3date
-    CountryList2 = ("chinese (traditional)", "Finnish", "Serbian", "Swedish")
-    #1year2Con3date
-    CountryList3 = ("ChileanSpanish", "Catalan", "English", "French", "Galician", "German", "Greek", "Indonesian", "Japanese", "Polish", "Portuguese", "Romanian", "Slovak", "Slovenian", "Spanish", "Thai")  #1year2Con3date
+# Organize the Languages by lists to make better translations
+    CountryList1 = ("Chilean_Spanish", "French", "Indonesian", "Portuguese","Spanish")
+    CountryList2 = ("English")
+    
 
     # Getting data from the Paths
     languageBase = dirPath.split('_')[-1]
-    constName = dirPath.split('_')[-2]
-    year = dirPath.split('_')[-4]
-    thaiYear = int(year)+ 543
+    latitude = dirPath.split('_')[-2]
+    constName = dirPath.split('_')[-3]
+    year = dirPath.split('_')[-5]
+    #thaiYear = int(year)+ 543
 
     #Be sure to change the websites into the word files
     website1 = "astro/maps/GaNight/2018/"
@@ -208,6 +206,7 @@ def southTranslation(dirPaths):
         constellationTranslated = "Canis Major"
         dateTranslated = southData.get('Canis major')
 
+
     # Replace the translations in the proper places
     for languageSelected, date in southDateReplacement.items():
         if languageSelected == languageBase:
@@ -218,14 +217,10 @@ def southTranslation(dirPaths):
                     if date in paragraph.text:
                         paragraph.clear()
                         if languageBase in CountryList1:
-                            paragraph.add_run(southHeadingFirst[languageBase]+ dateTranslated +southHeadingMiddle[languageBase]+ constellationTranslated + southHeadingLast[languageBase], style = 'GaNStyle')
+                            paragraph.add_run(southHeadingFirst[languageBase]+ str(year) + southHeadingMiddle[languageBase]+ constellationTranslated + southHeadingLast[languageBase] + dateTranslated + ".", style = 'GaNStyle')
                         elif languageBase in CountryList2:
-                            paragraph.add_run(southHeadingFirst[languageBase]+ constellationTranslated + southHeadingMiddle[languageBase]+ str(year) +southHeadingLast[languageBase]+ dateTranslated + ".", style = 'GaNStyle' )
-                        elif languageBase in CountryList3:
-                            if languageBase != "Thai":      
-                                paragraph.add_run(southHeadingFirst[languageBase]+ str(year) +southHeadingMiddle[languageBase] + constellationTranslated +southHeadingLast[languageBase] + dateTranslated, style = 'GaNStyle')
-                            else:
-                                paragraph.add_run(southHeadingFirst[languageBase]+ str(thaiYear) +southHeadingMiddle[languageBase] + constellationTranslated +southHeadingLast[languageBase] + dateTranslated, style = 'GaNStyle')
+                            paragraph.add_run(str(year) + southHeadingFirst[languageBase]+ constellationTranslated + southHeadingMiddle[languageBase] + southHeadingLast[languageBase]+ dateTranslated + ".", style = 'GaNStyle' )
+                    
                     # Replace only if the constellation's name is in the paragraph
                     else:
                         paragraph.clear()
@@ -245,13 +240,15 @@ def southTranslation(dirPaths):
                     paragraph.add_run(newLink, style = 'GaNLinks')
 
     #Save a copy with a new name, date and language.
-    dirPath = dirPath.rsplit('_', 1)[0]
-    newWordPath = os.path.join(dirPath + "\GaN_{year}_ActivityGuide_{cons}_".format(year = year, cons = constName) + str(languageBase) + ".docx")
+    dirPath = dirPath.rsplit('_', 2)[0]
+    newWordPath = os.path.join(dirPath + "\\GaN_{year}_ActivityGuide_{cons}_lat_".format(year = year, cons = constName) + str(latitude) + "_" + str(languageBase) + ".docx")
     workingDoc.save(newWordPath)
 
     #Print information about the working file on
-    return print("The " + languageBase + " activity guide for the constellation {cons}".format(cons = constName) + " in the south has been completed \n____________________________________________________________________________________________\n")
+    print("The " + languageBase + " activity guide for the constellation {cons}".format(cons = constName) + " in the latitude {lat}".format(lat = latitude) +" south has been completed \n___________________________________________________________________________________________________________\n")
 
+    # return the new doc path to make a list with it.
+    return newWordPath
 
 
 
