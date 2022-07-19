@@ -12,6 +12,8 @@ from Activity_Guide_Changes.GaNPrintImages import openWordDoc
 from Activity_Guide_Changes.GaNPrintImages import transformLatitude
 from Activity_Guide_Changes.GaNPrintImages import openImage
 from Activity_Guide_Changes.GaNPrintImages import printImage
+from Activity_Guide_Changes.docxToPdf import create_pdf_folder
+from Activity_Guide_Changes.docxToPdf import create_pdf_dir
 
 
 

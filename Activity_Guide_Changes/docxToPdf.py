@@ -1,30 +1,28 @@
-import sys
-import os
-#Is needed to install comtypes package
-import comtypes.client
+import os 
+from datetime import datetime
 
-#open word document, save as a pdf
-def docxtopdf():
-    master_direct = os.getcwd()
+def create_pdf_folder():
 
-    for directory in os.listdir(master_direct):
-        try:
-            for filename in os.listdir(directory):
-                if filename.endswith(".docx"):
-                    wdFormatPDF = 17
+    current_day_hour = datetime.now()
 
-                    in_file = os.path.abspath(filename)
-                    out_file1 = os.path.abspath(filename)
-                    out_file2 = out_file1[:-4] + 'pdf'
-                    word = comtypes.client.CreateObject('Word.Application')
-                    doc = word.Documents.Open(in_file)
-                    #out_file2 is The PDF file expected as the outcome
-                    doc.SaveAs(out_file2, FileFormat=wdFormatPDF)
-                    doc.Close()
-                    word.Quit()
+    savePath = os.getcwd()
+    savePath = os.path.join(savePath + "\GaN\pdf_files\Activity_Guides_" + current_day_hour.strftime('%Y%m%d_%H%M%S'))
+    if not os.path.exists(savePath):
+        os.makedirs(savePath)
+    return savePath
 
-                    continue
-                else:
-                    continue
-        except:
-            continue
+def create_pdf_dir(cardinal, year, constellations, pdf_folder):
+    
+    paths = []
+    for con in constellations:
+        savePath = os.getcwd() 
+        savePath = os.path.join(pdf_folder + "\GaN_{cardinal}_{year}_ActivityGuide_{con}".format(cardinal = cardinal, year = year, con = con))        
+        print(savePath)
+        os.mkdir(savePath)
+        paths.append(savePath)
+
+    return paths
+
+
+
+

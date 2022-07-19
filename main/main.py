@@ -38,7 +38,12 @@ if __name__ =='__main__':
     # Creating the directories and the Paths for South Constelllations
     southDirectories= agc.createSouthDir(southYear, southConstellations)
     southPaths = agc.createSouthPaths(southDirectories, southLanguages,latitudesSouth)
+
+    pdf_folder = agc.create_pdf_folder()
+    pdf_north_folders = agc.create_pdf_dir("North", northYear, northConstellations,pdf_folder)
+    pdf_south_folders = agc.create_pdf_dir("South", southYear, southConstellations,pdf_folder)
     
+        
     if len(northConstellations) == 0:
         print("There are not constellations selected for the north hemisphere.")
         pass

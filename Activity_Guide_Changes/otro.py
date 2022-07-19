@@ -52,3 +52,25 @@
                 tableCell.paragraphs[0].add_run().add_picture(dirCharts[k], width = Inches(1.44), height = Inches(1.01))
                 k = k + 1
                 workingDoc.save(filename)
+
+
+
+def create_pdf_folder():
+    today = datetime.now
+
+
+def create_pdf_dir(year, constellations):
+    cons = constellations
+    year = year
+    savePath = os.getcwd() 
+    savePath = os.path.join(savePath + "\GaN\docs_changed")
+    #rmtree(savePath)
+    os.mkdir(savePath)
+    paths = []
+    for con in cons:
+        savePath = os.getcwd() 
+        savePath = os.path.join(savePath + "\GaN\docs_changed\GaN_North_{year}_ActivityGuide_{con}".format(year = year, con = con))        
+        os.mkdir(savePath)
+        paths.append(savePath)
+    
+    return paths
