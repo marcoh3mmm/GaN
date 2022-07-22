@@ -57,7 +57,7 @@ def imageDownload(link):
         with open(newLinkString, 'wb') as f:
             img = requests.get(link)
             f.write(img.content)
-            
+                        
             return print(linkString + " has been downloaded.\n____________________________________________________________________________________________\n")
 
 

@@ -14,9 +14,7 @@ import pandas as pd
 from shutil import rmtree
 
 
-
-
-
+#Import the Excel Data
 def importNorthData():
     # Define the path for the excel file
     excelPath = os.getcwd()
@@ -368,6 +366,8 @@ def northTranslation(dirPaths):
     dirPath = dirPath.rsplit('_', 2)[0]
     newWordPath = os.path.join(dirPath + "\GaN_{year}_ActivityGuide_{cons}_lat_".format(year = year, cons = constName) + str(latitude) + "_" + str(languageBase) + ".docx")
     workingDoc.save(newWordPath)
+
+    
     
     #Print information about the working file on
     print("The " + languageBase + " activity guide for the constellation {cons}".format(cons = constName) + " in the latitude {lat}".format(lat = latitude) +" north has been completed \n___________________________________________________________________________________________________________\n")

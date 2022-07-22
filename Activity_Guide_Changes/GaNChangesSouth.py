@@ -244,6 +244,7 @@ def southTranslation(dirPaths):
     newWordPath = os.path.join(dirPath + "\\GaN_{year}_ActivityGuide_{cons}_lat_".format(year = year, cons = constName) + str(latitude) + "_" + str(languageBase) + ".docx")
     workingDoc.save(newWordPath)
 
+
     #Print information about the working file on
     print("The " + languageBase + " activity guide for the constellation {cons}".format(cons = constName) + " in the latitude {lat}".format(lat = latitude) +" south has been completed \n___________________________________________________________________________________________________________\n")
 

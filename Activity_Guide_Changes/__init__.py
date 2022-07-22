@@ -4,6 +4,7 @@ from Activity_Guide_Changes.GaNChangesNorth import importNorthData
 from Activity_Guide_Changes.GaNChangesNorth import northTranslation
 from Activity_Guide_Changes.GaNChangesSouth import createSouthDir
 from Activity_Guide_Changes.GaNChangesSouth import createSouthPaths
+from Activity_Guide_Changes.GaNChangesSouth import importSouthData
 from Activity_Guide_Changes.GaNChangesSouth import southTranslation
 from Activity_Guide_Changes.GaNGetImages import createImageDir
 from Activity_Guide_Changes.GaNGetImages import imagesLinks
@@ -14,6 +15,9 @@ from Activity_Guide_Changes.GaNPrintImages import openImage
 from Activity_Guide_Changes.GaNPrintImages import printImage
 from Activity_Guide_Changes.docxToPdf import create_pdf_folder
 from Activity_Guide_Changes.docxToPdf import create_pdf_dir
+from Activity_Guide_Changes.docxToPdf import create_pdf_paths
+from Activity_Guide_Changes.docxToPdf import print_pdf
+from Activity_Guide_Changes.docxToPdf import remove_docs
 
 
 

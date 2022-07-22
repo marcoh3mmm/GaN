@@ -1,76 +1,89 @@
-    northYear = 2022
-    northConstellations = ["Perseus", "Leo", "Bootes", "Cygnus", "Pegasus", "Orion", "Hercules"]
-    northLanguages = ["Catalan", "Chinese", "Czech", "English", "Finnish", "French", "Galician", "German", "Greek", "Indonesian", "Japanese", "Polish", "Portuguese", "Romanian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "Thai"]
-    latitudesNorth = ["50N", "40N", "30N", "20N", "10N", "0"]
-    # Creating the directories and the Paths for North Constellations
-    northDirectories= agc.createNorthDir(northYear, northConstellations)
-    northPaths = agc.createNorthPaths(northDirectories, northLanguages)
- 
-
-    # Get the data from the User for south constellations
-    southYear = northYear
-    southConstellations = ["Orion","Canis Major", "Crux", "Leo", "Bootes", "Scorpius", "Hercules", "Sagittarius", "Grus", "Pegasus"]
-    southLanguages = ["English", "French", "Indonesian", "Portuguese", "Spanish"]
-    latitudesSouth = ["0", "10S", "20S", "30S", "40S"]
+import os
+from docx2pdf import convert
+'''
+northYear = 2022
+northConstellations = ["Perseus", "Leo", "Bootes", "Cygnus", "Pegasus", "Orion", "Hercules"]
+northLanguages = ["Catalan", "Chinese", "Czech", "English", "Finnish", "French", "Galician", "German", "Greek", "Indonesian", "Japanese", "Polish", "Portuguese", "Romanian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "Thai"]
+latitudesNorth = ["50N", "40N", "30N", "20N", "10N", "0"]
+# Creating the directories and the Paths for North Constellations
+northDirectories= agc.createNorthDir(northYear, northConstellations)
+northPaths = agc.createNorthPaths(northDirectories, northLanguages)
 
 
-        for dc in dirCharts:
-        
-        i = 0
-        k = 0
-        l = 0              
+# Get the data from the User for south constellations
+southYear = northYear
+southConstellations = ["Orion","Canis Major", "Crux", "Leo", "Bootes", "Scorpius", "Hercules", "Sagittarius", "Grus", "Pegasus"]
+southLanguages = ["English", "French", "Indonesian", "Portuguese", "Spanish"]
+latitudesSouth = ["0", "10S", "20S", "30S", "40S"]
+'''
 
-        for table in workingDoc.tables:
-            
-            print(table.cell)
-            BigPictureCells = (table.cell(1,0), table.cell(1,2), table.cell(4,0), table.cell(4,2))
-            small_picture_cells = (table.cell(1,0), table.cell(1,1), table.cell(1,2), table.cell(1,3), table.cell(3,0), table.cell(3,1), table.cell(3,2), table.cell(3,3))
-            
-            if i < 2:
-                for tableCell in BigPictureCells:
-                    tableCell.paragraphs[1].clear()
-                                        
-                    tableCell.paragraphs[1].add_run().add_picture(dc, width = Inches(3.39), height = Inches(2.35))
-                    workingDoc.save(filename)
-                    k = k + 1
-            
-            else :
-                for tableCell in small_picture_cells:
-                    tableCell.paragraphs[0].clear()
-                    tableCell.paragraphs[0].add_run().add_picture(dc, width = Inches(1.44), height = Inches(1.01))
-                    workingDoc.save(filename)
-                    l = l + 1
-                
-            i = i + 1  
+north_word_paths = ['C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Perseus\\GaN_2022_ActivityGuide_Perseus_lat_50N_chinese (traditional).docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Perseus\\GaN_2022_ActivityGuide_Perseus_lat_30N_chinese (traditional).docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Leo\\GaN_2022_ActivityGuide_Leo_lat_50N_chinese (traditional).docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Leo\\GaN_2022_ActivityGuide_Leo_lat_30N_chinese (traditional).docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Orion\\GaN_2022_ActivityGuide_Orion_lat_50N_chinese (traditional).docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Orion\\GaN_2022_ActivityGuide_Orion_lat_30N_chinese (traditional).docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Perseus\\GaN_2022_ActivityGuide_Perseus_lat_50N_Czech.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Perseus\\GaN_2022_ActivityGuide_Perseus_lat_30N_Czech.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Leo\\GaN_2022_ActivityGuide_Leo_lat_50N_Czech.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Leo\\GaN_2022_ActivityGuide_Leo_lat_30N_Czech.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Orion\\GaN_2022_ActivityGuide_Orion_lat_50N_Czech.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Orion\\GaN_2022_ActivityGuide_Orion_lat_30N_Czech.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Perseus\\GaN_2022_ActivityGuide_Perseus_lat_50N_English.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Perseus\\GaN_2022_ActivityGuide_Perseus_lat_30N_English.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Leo\\GaN_2022_ActivityGuide_Leo_lat_50N_English.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Leo\\GaN_2022_ActivityGuide_Leo_lat_30N_English.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Orion\\GaN_2022_ActivityGuide_Orion_lat_50N_English.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Orion\\GaN_2022_ActivityGuide_Orion_lat_30N_English.docx'] 
+south_word_paths = ['C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_South_2022_ActivityGuide_Orion\\GaN_2022_ActivityGuide_Orion_lat_0_Portuguese.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_South_2022_ActivityGuide_Orion\\GaN_2022_ActivityGuide_Orion_lat_40S_Portuguese.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_South_2022_ActivityGuide_Canis Major\\GaN_2022_ActivityGuide_Canis Major_lat_0_Portuguese.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_South_2022_ActivityGuide_Canis Major\\GaN_2022_ActivityGuide_Canis Major_lat_40S_Portuguese.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_South_2022_ActivityGuide_Bootes\\GaN_2022_ActivityGuide_Bootes_lat_0_Portuguese.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_South_2022_ActivityGuide_Bootes\\GaN_2022_ActivityGuide_Bootes_lat_40S_Portuguese.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_South_2022_ActivityGuide_Orion\\GaN_2022_ActivityGuide_Orion_lat_0_Spanish.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_South_2022_ActivityGuide_Orion\\GaN_2022_ActivityGuide_Orion_lat_40S_Spanish.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_South_2022_ActivityGuide_Canis Major\\GaN_2022_ActivityGuide_Canis Major_lat_0_Spanish.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_South_2022_ActivityGuide_Canis Major\\GaN_2022_ActivityGuide_Canis Major_lat_40S_Spanish.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_South_2022_ActivityGuide_Bootes\\GaN_2022_ActivityGuide_Bootes_lat_0_Spanish.docx', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_South_2022_ActivityGuide_Bootes\\GaN_2022_ActivityGuide_Bootes_lat_40S_Spanish.docx']
+
+north_pdf_folders = ['C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\pdf_files\\Activity_Guides_20220719_150959\\GaN_North_2022_ActivityGuide_Perseus', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\pdf_files\\Activity_Guides_20220719_150959\\GaN_North_2022_ActivityGuide_Leo', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\pdf_files\\Activity_Guides_20220719_150959\\GaN_North_2022_ActivityGuide_Orion']
+south_pdf_folders =['C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\pdf_files\\Activity_Guides_20220719_150959\\GaN_South_2022_ActivityGuide_Orion', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\pdf_files\\Activity_Guides_20220719_150959\\GaN_South_2022_ActivityGuide_Canis Major', 'C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\pdf_files\\Activity_Guides_20220719_150959\\GaN_South_2022_ActivityGuide_Bootes']
+
+
+#path = "C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Perseus\\GaN_2022_ActivityGuide_Perseus_lat_50N_chinese (traditional).docx"
+#path2 = "C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\pdf_files\\Activity_Guides_20220718_220633\\GaN_North_2022_ActivityGuide_Perseus"
+north_pdf_paths = []
+for pdf_folder in north_pdf_folders:
+    for word_path in north_word_paths:
+        constellation = word_path.split('_')[-4]
+        if constellation in pdf_folder:
+            word_path1 = word_path[:-5]
+            word_path1 = word_path1.split('\\')[-1]
+
+            pdf_path = os.path.join(pdf_folder + "\\" + word_path1 +".pdf" )
+
+            north_pdf_paths.append(pdf_path)
+
+print (north_pdf_paths)
 
 
 
-                    else :
-            k = 0
-            for tableCell in smallPictureCells:
-                tableCell.paragraphs[0].clear()
-                tableCell.paragraphs[0].add_run().add_picture(dirCharts[k], width = Inches(1.44), height = Inches(1.01))
-                k = k + 1
-                workingDoc.save(filename)
 
 
 
-def create_pdf_folder():
-    today = datetime.now
 
 
-def create_pdf_dir(year, constellations):
-    cons = constellations
-    year = year
-    savePath = os.getcwd() 
-    savePath = os.path.join(savePath + "\GaN\docs_changed")
-    #rmtree(savePath)
-    os.mkdir(savePath)
-    paths = []
-    for con in cons:
-        savePath = os.getcwd() 
-        savePath = os.path.join(savePath + "\GaN\docs_changed\GaN_North_{year}_ActivityGuide_{con}".format(year = year, con = con))        
-        os.mkdir(savePath)
-        paths.append(savePath)
-    
-    return paths
+
+import sys
+import os
+import comtypes.client
+
+path = "C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\docs_changed\\GaN_North_2022_ActivityGuide_Perseus\\GaN_2022_ActivityGuide_Perseus_lat_50N_chinese (traditional).docx"
+path2 = "C:\\Users\\Marco Moreno\\OneDrive\\Documentos\\Enciso Systems\\GaN\\GaN\\pdf_files\\Activity_Guides_20220718_220633\\GaN_North_2022_ActivityGuide_Perseus"
+
+path1 = path[:-5]
+path1 = path1.split('\\')[-1]
+
+path2 = os.path.join(path2 + "\\" + path1 +".pdf" )
+
+print (path2)
+
+if path.endswith(".docx"):
+    wdFormatPDF = 17
+
+    word = comtypes.client.CreateObject('Word.Application')
+    doc = word.Documents.Open(path)
+    doc.SaveAs(path2, FileFormat=wdFormatPDF)
+    doc.Close()
+    word.Quit()
+
+def docx2pdf(input_file):
+    """docx to pdf"""
+    word = Dispatch('Word.Application')
+    doc = word.Documents.Open(input_file)
+    doc.SaveAs(input_file.replace(".docx", ".pdf"), FileFormat=17)
+    doc.Close()
+    word.Quit()
+
+                const_folder = folder.split('_')[-1]
+            cardinal_folder = folder.split('_')[-4]
+
+            const_path =  paths.split('_')[-4]
+            cardinal_path = path.split('_')[-4]
+
+            print(const_folder, cardinal_folder)
+            print(const_path, cardinal_path)

@@ -66,7 +66,7 @@ def printImage(fileName):
     elif "Hercules_lat_40S_" in fileName:
         dirCharts = openLocalImage(fileName.replace("40S_", "30S_"))
     else:
-        dirCharts = openImage(fileName)
+        dirCharts = openLocalImage(fileName)
 
     table1 = workingDoc.tables[0]
     table1 = (table1.cell(1,0), table1.cell(1,2), table1.cell(4,0), table1.cell(4,2))
@@ -93,6 +93,7 @@ def printImage(fileName):
         tableCell.paragraphs[0].add_run().add_picture(dirCharts[j], width = Inches(1.44), height = Inches(1.01))
         j = j + 1
     workingDoc.save(fileName)
+
 
     print("The charts in the activity guide for the constellation {cons}".format(cons = constellation) + " in the latitude {lat}".format(lat = latitude) +" have been printed \n________________________________________________________________________________________________\n")    
 
