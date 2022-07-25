@@ -87,3 +87,14 @@ def docx2pdf(input_file):
 
             print(const_folder, cardinal_folder)
             print(const_path, cardinal_path)
+
+        time.sleep(10)
+        new_path = path.replace(".docx", "1.docx")
+        shutil.copyfile(path, new_path)
+        pdf_path = new_path.replace(".docx", ".pdf")
+        word = comtypes.client.CreateObject('Word.Application')
+        doc = word.Documents.Open(path)
+        doc.SaveAs(pdf_path, FileFormat=wdFormatPDF)
+        doc.Close()
+        word.Quit()
+        print("renamed and printed:  " + pdf_path)

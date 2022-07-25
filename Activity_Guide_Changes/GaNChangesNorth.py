@@ -293,7 +293,7 @@ def northTranslation(dirPaths):
     objCharstyle = objStyles.add_style('GaNStyle', WD_STYLE_TYPE.CHARACTER)
     objFont = objCharstyle.font
     objFont.name = 'Calibri'
-    objFont.size = Pt(14)
+    objFont.size = Pt(11)
     
     objStyles2 = workingDoc.styles
     objCharstyle2 = objStyles2.add_style('GaNParagraph', WD_STYLE_TYPE.CHARACTER)
@@ -310,7 +310,7 @@ def northTranslation(dirPaths):
     objFont3.underline = True
     objFont3.color.rgb = RGBColor(0,0,128)
 
-
+    
     #Define the base language in deep_translator and translate it into de destiny language
     if languageBase == "German":
         constellationTranslated =GoogleTranslator(source ='english', target = languageBase.lower()).translate("constellation " + constName)

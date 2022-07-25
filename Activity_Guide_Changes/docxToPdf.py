@@ -1,7 +1,8 @@
 import os 
 from datetime import datetime
 import comtypes.client
-import time
+import psutil
+
 
 def create_pdf_folder():
 
@@ -50,17 +51,20 @@ def print_pdf(path):
 
     try:
         word = comtypes.client.CreateObject('Word.Application')
+        word.Visible = True
         doc = word.Documents.Open(path)
         doc.SaveAs(pdf_path, FileFormat=wdFormatPDF)
         doc.Close()
         word.Quit()
         
+        
     except Exception as e:
         print(e)
-  
-
-    print(name + " has been printed" + "\n___________________________________________________________________________________________________________\n")
+            
+    print(name + " has been printed" + "\n__________________________________________________________________\n")
+    
     return pdf_path
+
 
 # remove all the .docx files to deliver the pdfs
 def remove_docs(paths):

@@ -11,8 +11,10 @@ from Activity_Guide_Changes.GaNGetImages import imagesLinks
 from Activity_Guide_Changes.GaNGetImages import imageDownload
 from Activity_Guide_Changes.GaNPrintImages import openWordDoc
 from Activity_Guide_Changes.GaNPrintImages import transformLatitude
-from Activity_Guide_Changes.GaNPrintImages import openImage
-from Activity_Guide_Changes.GaNPrintImages import printImage
+from Activity_Guide_Changes.GaNPrintImages import openLocalImage
+from Activity_Guide_Changes.GaNPrintImages import printLocalImage
+from Activity_Guide_Changes.GaNPrintImages import openDownloadImage
+from Activity_Guide_Changes.GaNPrintImages import printDownloadImage
 from Activity_Guide_Changes.docxToPdf import create_pdf_folder
 from Activity_Guide_Changes.docxToPdf import create_pdf_dir
 from Activity_Guide_Changes.docxToPdf import create_pdf_paths

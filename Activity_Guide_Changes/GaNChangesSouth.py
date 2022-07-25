@@ -180,7 +180,7 @@ def southTranslation(dirPaths):
     objCharstyle = objStyles.add_style('GaNStyle', WD_STYLE_TYPE.CHARACTER)
     objFont = objCharstyle.font
     objFont.name = 'Calibri'
-    objFont.size = Pt(14)
+    objFont.size = Pt(11)
     
     objStyles2 = workingDoc.styles
     objCharstyle2 = objStyles2.add_style('GaNParagraph', WD_STYLE_TYPE.CHARACTER)
