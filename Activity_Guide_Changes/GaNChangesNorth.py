@@ -280,6 +280,7 @@ def north_translations(dir_paths):
     obj_font = obj_char_style.font
     obj_font.name = 'Calibri'
     obj_font.size = Pt(11)
+    obj_font.bold = True
     
     obj_styles2 = working_doc.styles
     obj_char_style2 = obj_styles2.add_style('GaN_paragraph', WD_STYLE_TYPE.CHARACTER)

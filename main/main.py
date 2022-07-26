@@ -16,7 +16,7 @@ if __name__ =='__main__':
     start = time.time()
 
     num_process = 8
-    images_downloaded = True
+    images_downloaded = False
     # Get the data from the User for north constellations
     north_year = 2022
     north_constellations = ["Leo"]
@@ -25,8 +25,8 @@ if __name__ =='__main__':
 
     # Get the data from the User for south constellations
     south_year = north_year
-    south_constellations = ["Orion"]
-    south_languages = ["Spanish"]
+    south_constellations = ["Canis Major"]
+    south_languages = ["Spanish", "English"]
     latitudes_south = ["0"]
  
     

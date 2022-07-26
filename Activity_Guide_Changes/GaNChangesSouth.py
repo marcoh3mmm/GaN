@@ -167,6 +167,7 @@ def south_translations(dir_paths):
     obj_font = obj_char_style.font
     obj_font.name = 'Calibri'
     obj_font.size = Pt(11)
+    obj_font.bold = True
     
     obj_styles2 = working_doc.styles
     obj_char_style2 = obj_styles2.add_style('GaN_paragraph', WD_STYLE_TYPE.CHARACTER)
@@ -189,8 +190,12 @@ def south_translations(dir_paths):
         constellation_translated =GoogleTranslator(source ='english', target = language_base.lower()).translate(const_name +" constellation")
         date_translated = GoogleTranslator(source ='english', target = language_base.lower()).translate(South_data.get(const_name))
     else:
-        constellation_translated = "Canis Major"
-        date_translated = South_data.get('Canis major')
+        constellation_translated =GoogleTranslator(source ='english', target = language_base.lower()).translate("constellation")
+        if language_base in country_list1:
+            constellation_translated = constellation_translated + " Canis Major"
+        else:
+            constellation_translated = "Canis Major " + constellation_translated 
+        date_translated = GoogleTranslator(source ='english', target = language_base.lower()).translate(South_data.get('Canis major'))
 
 
     # Replace the translations in the proper places
