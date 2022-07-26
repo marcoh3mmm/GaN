@@ -15,19 +15,19 @@ if __name__ =='__main__':
     # Start time counter
     start = time.time()
 
-    numProcess = 8
-    images_downloaded = False
+    num_process = 8
+    images_downloaded = True
     # Get the data from the User for north constellations
     north_year = 2022
-    north_constellations = ["Perseus", "Leo", "Bootes"]
-    north_languages = ["Catalan", "Chinese", "Czech","French"]
-    latitudes_north = ["50N", "40N", "30N", "20N", "10N"]
+    north_constellations = ["Leo"]
+    north_languages = ["Galician"]
+    latitudes_north = ["0"]
 
     # Get the data from the User for south constellations
     south_year = north_year
-    south_constellations = ["Canis Major", "Crux"]
-    south_languages = ["French", "Indonesian", "Portuguese", "Spanish"]
-    latitudes_south = ["0", "10S", "20S", "30S", "40S"]
+    south_constellations = ["Orion"]
+    south_languages = ["Spanish"]
+    latitudes_south = ["0"]
  
     
     # Create the folders for the pdf files
@@ -35,9 +35,9 @@ if __name__ =='__main__':
     pdf_north_folders = agc.create_pdf_dir("North", north_year, north_constellations,pdf_folder)
     pdf_south_folders = agc.create_pdf_dir("South", south_year, south_constellations,pdf_folder)
 
-    #create the paths for the pdf files
-    north_paths = agc.createNorthPaths(pdf_north_folders, north_languages, latitudes_north)
-    south_paths = agc.createSouthPaths(pdf_south_folders, south_languages, latitudes_south)
+    #create the paths for the word files
+    north_paths = agc.create_north_paths(pdf_north_folders, north_languages, latitudes_north)
+    south_paths = agc.create_south_paths(pdf_south_folders, south_languages, latitudes_south)
 
     
     ############################## translations ##########################################
@@ -49,9 +49,9 @@ if __name__ =='__main__':
         # Create a list from the new doc Paths for a leter use in the Images printing
         north_list_paths = []
         #Call de translation for north constellations function, requiring multiprocessing with Pool
-        pool_1 = multiprocessing.Pool(processes = numProcess)
+        pool_1 = multiprocessing.Pool(processes = num_process)
         for path in north_paths:
-            north_list_paths.append(pool_1.apply_async(agc.northTranslation, args = (path, )).get())
+            north_list_paths.append(pool_1.apply_async(agc.north_translations, args = (path, )).get())
         pool_1.close()
         pool_1.join()
     
@@ -63,29 +63,29 @@ if __name__ =='__main__':
     else:
         #Call de translation for north constellations function, requiring multiprocessing with Pool
         south_list_paths = []
-        pool_2 = multiprocessing.Pool(processes = numProcess)
+        pool_2 = multiprocessing.Pool(processes = num_process)
         for path in south_paths:
-            south_list_paths.append(pool_2.apply_async(agc.southTranslation, args = (path, )).get())
+            south_list_paths.append(pool_2.apply_async(agc.south_translations, args = (path, )).get())
         pool_2.close()
         pool_2.join()
 
-    ################################ Print Charts ##########################################
+    ####################################### Print Charts ##########################################
     if images_downloaded == True:
     
-    ################################ Download the Imagees ##########################################
+    ################################## Download the Images #########################################
         
         # Activate the Scrapper
-        agc.createImageDir()
-        linksNorth = agc.imagesLinks(north_constellations,latitudes_north)
-        linksSouth = agc.imagesLinks(south_constellations,latitudes_south)
+        agc.create_image_dir()
+        links_north = agc.images_links(north_constellations,latitudes_north)
+        links_south = agc.images_links(south_constellations,latitudes_south)
         
         if len(north_constellations) == 0:
             print("There are not constellations selected for the north hemisphere.")
             pass
         else: 
-            pool3 = multiprocessing.Pool(processes = numProcess)
-            for link in linksNorth:
-                pool3.apply_async(agc.imageDownload, args = (link, ))
+            pool3 = multiprocessing.Pool(processes = num_process)
+            for link in links_north:
+                pool3.apply_async(agc.images_download, args = (link, ))
             pool3.close()
             pool3.join()
 
@@ -94,9 +94,9 @@ if __name__ =='__main__':
             print("There are not constellations selected for the south hemisphere.")
             pass
         else:
-            pool4 = multiprocessing.Pool(processes = numProcess)
-            for link in linksSouth:
-                pool4.apply_async(agc.imageDownload, args = (link, ))
+            pool4 = multiprocessing.Pool(processes = num_process)
+            for link in links_south:
+                pool4.apply_async(agc.images_download, args = (link, ))
             pool4.close()
             pool4.join()
 
@@ -107,10 +107,10 @@ if __name__ =='__main__':
             north_docx_paths = []
             pass
         else:
-            pool5 = multiprocessing.Pool(processes = numProcess)
+            pool5 = multiprocessing.Pool(processes = num_process)
             north_docx_paths = []
             for path in north_list_paths:
-                north_docx_paths.append(pool5.apply_async(agc.printDownloadImage, args = (path, )).get())
+                north_docx_paths.append(pool5.apply_async(agc.print_download_image, args = (path, )).get())
             pool5.close()
             pool5.join()
         
@@ -119,10 +119,10 @@ if __name__ =='__main__':
             south_docx_paths = []
             pass
         else:
-            pool6 = multiprocessing.Pool(processes = numProcess)
+            pool6 = multiprocessing.Pool(processes = num_process)
             south_docx_paths = []
             for path in south_list_paths:
-                south_docx_paths.append(pool6.apply_async(agc.printDownloadImage, args = (path, )).get())
+                south_docx_paths.append(pool6.apply_async(agc.print_download_image, args = (path, )).get())
             pool6.close()
             pool6.join()
 
@@ -136,10 +136,10 @@ if __name__ =='__main__':
             north_docx_paths = []
             pass
         else:
-            pool5 = multiprocessing.Pool(processes = numProcess)
+            pool5 = multiprocessing.Pool(processes = num_process)
             north_docx_paths = []
             for path in north_list_paths:
-                north_docx_paths.append(pool5.apply_async(agc.printLocalImage, args = (path, )).get())
+                north_docx_paths.append(pool5.apply_async(agc.print_local_image, args = (path, )).get())
             pool5.close()
             pool5.join()
         
@@ -148,56 +148,15 @@ if __name__ =='__main__':
             south_docx_paths = []
             pass
         else:
-            pool6 = multiprocessing.Pool(processes = numProcess)
+            pool6 = multiprocessing.Pool(processes = num_process)
             south_docx_paths = []
             for path in south_list_paths:
-                south_docx_paths.append(pool6.apply_async(agc.printLocalImage, args = (path, )).get())
+                south_docx_paths.append(pool6.apply_async(agc.print_local_image, args = (path, )).get())
             pool6.close()
             pool6.join()
 
-
-    '''
-    # Get the saving pdf paths
-    # Create the dictionaries with the docx paths and the pdf paths
-    if len(north_constellations) == 0:
-        print("There are not constellations selected for the north hemisphere.")
-        pass
-    else:
-        north_pdf_paths = agc.create_pdf_paths(north_docx_paths, pdf_north_folders)
-        #north_path_dict = dict(zip(north_docx_paths, north_pdf_paths))
-    
-    if len(south_constellations) == 0:
-        print("There are not constellations selected for the south hemisphere.")
-        pass
-    else:
-        south_pdf_paths = agc.create_pdf_paths(south_docx_Paths, pdf_south_folders)
-        #south_path_dict = dict(zip(south_docx_Paths, south_pdf_paths))
-    '''
-
-    
-    '''
-    ################### Convert .docx into p.pdf and save it in a new folder ####################
-    if len(north_constellations) == 0:
-        print("There are not constellations selected for the north hemisphere.")
-        pass
-    else:
-        north_pdf_paths = []
-        for path in north_docx_paths:
-            north_pdf_paths.append(agc.print_pdf(path))
-        
-
-
-
-    if len(south_constellations) == 0:
-        print("There are not constellations selected for the north hemisphere.")
-        pass
-    else:
-        south_pdf_paths = []
-        for path in south_docx_paths:
-            south_pdf_paths.append(agc.print_pdf(path))
-    '''
-    
-
+    ############################# convert .docx to pdf #####################################
+    # Creating a List with the word Paths
     if len(north_docx_paths) == 0: 
         total_docx_paths = south_docx_paths
     elif len(south_docx_paths) == 0: 
@@ -205,11 +164,12 @@ if __name__ =='__main__':
     else:
         total_docx_paths = north_docx_paths + south_docx_paths 
 
-
-    pool9 = multiprocessing.Pool(processes = numProcess)
+    # converting .docx to pdf
+    pool9 = multiprocessing.Pool(processes = num_process)
     results = pool9.map_async(agc.print_pdf, total_docx_paths)
     results.get()
 
+    # Delete the word files
     agc.remove_docs(total_docx_paths)
     
     

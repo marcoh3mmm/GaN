@@ -8,20 +8,20 @@ def create_pdf_folder():
 
     current_day_hour = datetime.now()
 
-    savePath = os.getcwd()
-    savePath = os.path.join(savePath + "\GaN\pdf_files\Activity_Guides_" + current_day_hour.strftime('%Y%m%d_%H%M%S'))
-    if not os.path.exists(savePath):
-        os.makedirs(savePath)
-    return savePath
+    save_path = os.getcwd()
+    save_path = os.path.join(save_path + "\GaN\pdf_files\Activity_Guides_" + current_day_hour.strftime('%Y%m%d_%H%M%S'))
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
+    return save_path
 
 def create_pdf_dir(cardinal, year, constellations, pdf_folder):
     
     paths = []
     for con in constellations:
-        savePath = os.getcwd() 
-        savePath = os.path.join(pdf_folder + "\GaN_{cardinal}_{year}_ActivityGuide_{con}".format(cardinal = cardinal, year = year, con = con))
-        os.mkdir(savePath)
-        paths.append(savePath)
+        save_path = os.getcwd() 
+        save_path = os.path.join(pdf_folder + "\GaN_{cardinal}_{year}_ActivityGuide_{con}".format(cardinal = cardinal, year = year, con = con))
+        os.mkdir(save_path)
+        paths.append(save_path)
 
     return paths
 
@@ -72,6 +72,7 @@ def remove_docs(paths):
     for path in paths:
         if path.endswith('.docx'):
             os.remove(path)
+            print(".docx file deleted")
 
     return print("The activity guides are available for use")
 
