@@ -14,60 +14,46 @@ import pandas as pd
 from shutil import rmtree
 
 
-def importSouthData():
+def import_south_data():
     # Define the path for the excel file
-    excelPath = os.getcwd()
-    excelPath = os.path.join(excelPath + "\GaN\Activity_Guide_Changes\GaN_cons_and_dates.xlsx")
+    excel_path = os.getcwd()
+    excel_path = os.path.join(excel_path + "\GaN\Activity_Guide_Changes\GaN_cons_and_dates.xlsx")
 
     # Get Data from the Excel File using Pandas
     # Capitalize  constellations names for a later comparison
-    dfSouth = pd.read_excel (excelPath,sheet_name='South')
-    dfSouth['Constellations'] = dfSouth['Constellations'].str.capitalize()
+    df_south = pd.read_excel (excel_path,sheet_name='South')
+    df_south['Constellations'] = df_south['Constellations'].str.capitalize()
 
     #store constellation and date information in respective variables
-    southCons = dfSouth['Constellations']
-    southDates = dfSouth['Dates']
+    south_cons = df_south['Constellations']
+    south_dates = df_south['Dates']
 
     #updates the constellation: creates a variable to hold the new constellation, uses the old constellation
     #information to find the new constellation
-    newConstellationSouth = {}
+    new_constellation_south = {}
     
     # Ading key and values to the new dictionary
-    for i in range(len(southCons)):
-        newConstellationSouth[southCons[i]] = southDates[i] 
+    for i in range(len(south_cons)):
+        new_constellation_south[south_cons[i]] = south_dates[i] 
 
     #return the dictionary with the North Data
-    return newConstellationSouth
+    return new_constellation_south
 
-def createSouthDir(year, constellations):
-    cons = constellations
-    year = year
-    savePath = os.getcwd() 
-    savePath = os.path.join(savePath + "\GaN\docs_changed")
-    #rmtree(savePath)
-    #os.mkdir(savePath)
-    paths = []
-    for con in cons:
-        savePath = os.getcwd() 
-        savePath = os.path.join(savePath + "\GaN\docs_changed\GaN_South_{year}_ActivityGuide_{con}".format(year = year, con = con))        
-        os.mkdir(savePath)
-        paths.append(savePath)
-    
-    return paths
 
-def createSouthPaths(directories, languages, latitudes):
+# Create a list with the paths that will be use by the word files
+def create_south_paths(directories, languages, latitudes):
 
-    dirPaths = []
+    dir_paths = []
     for lang in languages:
         for direc in directories:
             for lat in latitudes:
-                dirPaths.append(direc + "_" + lat + "_" + lang)
-    return dirPaths
+                dir_paths.append(direc + "_" + lat + "_" + lang)
+    return dir_paths
 
 
 #opens document that will be edited
-def openWordDoc2(filename):
-    document = Document(filename)
+def open_word_doc2(file_name):
+    document = Document(file_name)
     return document
 
 
@@ -76,9 +62,9 @@ def openWordDoc2(filename):
 ########################All the information that needs to change#######################
 #######################################################################################
 
-def southTranslation(dirPaths):
+def south_translations(dir_paths):
     #updating southern hemisphere information (constellation, date, text displayed to user)
-    southConstellationReplacement = {
+    south_constellation_replacement = {
         "ChileanSpanish" : "Escorpio",
         "English" : "Scorpius",
         "French" : "Scorpion",
@@ -87,7 +73,7 @@ def southTranslation(dirPaths):
         "Spanish" : "Escorpio"
         }
         
-    southDateReplacement = {
+    south_date_replacement = {
         "ChileanSpanish" : "Del 4 al 13 de julio y del 2 al 11 de agosto",
         "English" : "July 4-13 and August 2-11",
         "French" : "Du 4 au 13 juillet et du 2 au 11 août",
@@ -96,7 +82,7 @@ def southTranslation(dirPaths):
         "Spanish" : "del 4 al 13 de julio y del 2 al 11 de agosto"
         }
 
-    southHeadingFirst = {
+    south_heading_first = {
         "ChileanSpanish" : "",
         "English" : " Campaign Dates that use the ",
         "French" : "Dates de la campagne ",
@@ -105,7 +91,7 @@ def southTranslation(dirPaths):
         "Spanish" : "Fechas de la campaña año "
         }
 
-    southHeadingMiddle = {
+    south_heading_middle = {
         "ChileanSpanish" : " Fechas de campaña para la constelación del ",
         "English" : "",
         "French" : " qui utilisent la ",
@@ -114,7 +100,7 @@ def southTranslation(dirPaths):
         "Spanish" : " que utilizan la "
         }
 
-    southHeadingLast = {
+    south_heading_last = {
         "ChileanSpanish" : ": ",
         "English" : ": ",
         "French" : ": ",
@@ -123,7 +109,7 @@ def southTranslation(dirPaths):
         "Spanish" : ": "
         }
 
-    firstParagraphfirst = {
+    paragraph_first = {
         "ChileanSpanish" : "Usted está participando en una campaña mundial para observar y registrar las estrellas visibles más débiles como un medio para medir la contaminación lumínica en un lugar determinado. Localizando y observando la ",
         "English" : "You are participating in a global campaign to observe and record the faintest stars visible as a means of measuring light pollution in a given location. By locating and observing the constellation ",
         "French" :   "Vous allez participer à une campagne mondiale d’observation pour détecter les plus faibles étoiles visibles afin de mesurer la pollution lumineuse sur un site donné. Partout dans le monde, en localisant et en observant la ",
@@ -133,7 +119,7 @@ def southTranslation(dirPaths):
 
     }
 
-    firstParagraphLast = {
+    paragraph_last = {
         "ChileanSpanish" : " en el cielo nocturno y comparándolo con las cartas estelares, la gente de todo el mundo aprenderá cómo las luces de su comunidad contribuyen a la contaminación lumínica. Sus contribuciones a la base de datos en línea documentarán el cielo nocturno visible.",
         "English" : " in the night sky and comparing it to stellar charts, people from around the world will learn how the lights in their community contribute to light pollution. Your contributions to the online database will document the visible nighttime sky.",
         "French" :   " dans le ciel nocturne et en la comparant aux cartes stellaires, les participants, apprendront comment l’éclairage, dans leur environnement local, influence la pollution lumineuse. Vos contributions à la base de données en ligne permettront de mesurer la qualité du ciel nocturne.",
@@ -150,20 +136,20 @@ def southTranslation(dirPaths):
     ##################################################################################################
 
     # Get data from the Excel file and bring the created Paths
-    dirPath = dirPaths
-    southData = importSouthData()
+    dir_path = dir_paths
+    South_data = import_south_data()
 
 
 # Organize the Languages by lists to make better translations
-    CountryList1 = ("Chilean_Spanish", "French", "Indonesian", "Portuguese","Spanish")
-    CountryList2 = ("English")
+    country_list1 = ("Chilean_Spanish", "French", "Indonesian", "Portuguese","Spanish")
+    country_list2 = ("English")
     
 
     # Getting data from the Paths
-    languageBase = dirPath.split('_')[-1]
-    latitude = dirPath.split('_')[-2]
-    constName = dirPath.split('_')[-3]
-    year = dirPath.split('_')[-5]
+    language_base = dir_path.split('_')[-1]
+    latitude = dir_path.split('_')[-2]
+    const_name = dir_path.split('_')[-3]
+    year = dir_path.split('_')[-5]
     #thaiYear = int(year)+ 543
 
     #Be sure to change the websites into the word files
@@ -172,83 +158,89 @@ def southTranslation(dirPaths):
 
     
     # Define the Word file path as the original file
-    wordPath = os.path.abspath("..\Gan\GaN\docs_to_change\GaN2018_ActivityGuide_Scorpius_S_")
-    workingDoc = openWordDoc2(wordPath + str(languageBase) + ".docx")
+    word_path = os.path.abspath("..\Gan\GaN\docs_to_change\GaN2018_ActivityGuide_Scorpius_S_")
+    working_doc = open_word_doc2(word_path + str(language_base) + ".docx")
 
     # styles of each paragraph to kkep the original word styles
-    objStyles = workingDoc.styles
-    objCharstyle = objStyles.add_style('GaNStyle', WD_STYLE_TYPE.CHARACTER)
-    objFont = objCharstyle.font
-    objFont.name = 'Calibri'
-    objFont.size = Pt(14)
+    obj_styles = working_doc.styles
+    obj_char_style = obj_styles.add_style('GaN_style', WD_STYLE_TYPE.CHARACTER)
+    obj_font = obj_char_style.font
+    obj_font.name = 'Calibri'
+    obj_font.size = Pt(11)
+    obj_font.bold = True
     
-    objStyles2 = workingDoc.styles
-    objCharstyle2 = objStyles2.add_style('GaNParagraph', WD_STYLE_TYPE.CHARACTER)
-    objFont2 = objCharstyle2.font
-    objFont2.name = 'Calibri'
-    objFont2.size = Pt(10)
+    obj_styles2 = working_doc.styles
+    obj_char_style2 = obj_styles2.add_style('GaN_paragraph', WD_STYLE_TYPE.CHARACTER)
+    obj_font2 = obj_char_style2.font
+    obj_font2.name = 'Calibri'
+    obj_font2.size = Pt(10)
     
-    objStyles3 = workingDoc.styles
-    objCharstyle3 = objStyles3.add_style('GaNLinks', WD_STYLE_TYPE.CHARACTER)
-    objFont3 = objCharstyle3.font
-    objFont3.name = 'Calibri'
-    objFont3.size = Pt(9.5)
-    objFont3.bold = True
-    objFont3.underline = True
-    objFont3.color.rgb = RGBColor(0,0,128)
+    obj_styles3 = working_doc.styles
+    obj_char_style3 = obj_styles3.add_style('GaN_links', WD_STYLE_TYPE.CHARACTER)
+    obj_font3 = obj_char_style3.font
+    obj_font3.name = 'Calibri'
+    obj_font3.size = Pt(9.5)
+    obj_font3.bold = True
+    obj_font3.underline = True
+    obj_font3.color.rgb = RGBColor(0,0,128)
 
 
     #Define the base language in deep_translator and translate it into de destiny language
-    if constName != "Canis Major" :
-        constellationTranslated =GoogleTranslator(source ='english', target = languageBase.lower()).translate(constName +" constellation")
-        dateTranslated = GoogleTranslator(source ='english', target = languageBase.lower()).translate(southData.get(constName))
+    if const_name != "Canis Major" :
+        constellation_translated =GoogleTranslator(source ='english', target = language_base.lower()).translate(const_name +" constellation")
+        date_translated = GoogleTranslator(source ='english', target = language_base.lower()).translate(South_data.get(const_name))
     else:
-        constellationTranslated = "Canis Major"
-        dateTranslated = southData.get('Canis major')
+        constellation_translated =GoogleTranslator(source ='english', target = language_base.lower()).translate("constellation")
+        if language_base in country_list1:
+            constellation_translated = constellation_translated + " Canis Major"
+        else:
+            constellation_translated = "Canis Major " + constellation_translated 
+        date_translated = GoogleTranslator(source ='english', target = language_base.lower()).translate(South_data.get('Canis major'))
 
 
     # Replace the translations in the proper places
-    for languageSelected, date in southDateReplacement.items():
-        if languageSelected == languageBase:
-            for paragraph in workingDoc.paragraphs:
+    for language_selected, date in south_date_replacement.items():
+        if language_selected == language_base:
+            for paragraph in working_doc.paragraphs:
                 #If the contellation's name is in the paragraph, delete the paragraph and add a new one with the translations
-                if southConstellationReplacement[languageBase] in paragraph.text:
+                if south_constellation_replacement[language_base] in paragraph.text:
                     # Replace only if the name and the date is on the paragraph, organizng with the grammar of each language
                     if date in paragraph.text:
                         paragraph.clear()
-                        if languageBase in CountryList1:
-                            paragraph.add_run(southHeadingFirst[languageBase]+ str(year) + southHeadingMiddle[languageBase]+ constellationTranslated + southHeadingLast[languageBase] + dateTranslated + ".", style = 'GaNStyle')
-                        elif languageBase in CountryList2:
-                            paragraph.add_run(str(year) + southHeadingFirst[languageBase]+ constellationTranslated + southHeadingMiddle[languageBase] + southHeadingLast[languageBase]+ dateTranslated + ".", style = 'GaNStyle' )
+                        if language_base in country_list1:
+                            paragraph.add_run(south_heading_first[language_base]+ str(year) + south_heading_middle[language_base]+ constellation_translated + south_heading_last[language_base] + date_translated + ".", style = 'GaN_style')
+                        elif language_base in country_list2:
+                            paragraph.add_run(str(year) + south_heading_first[language_base]+ constellation_translated + south_heading_middle[language_base] + south_heading_last[language_base]+ date_translated + ".", style = 'GaN_style' )
                     
                     # Replace only if the constellation's name is in the paragraph
                     else:
                         paragraph.clear()
-                        if(languageBase!= 'Japanese'):
-                            paragraph.add_run(firstParagraphfirst[languageBase] + constellationTranslated + firstParagraphLast[languageBase], style = 'GaNParagraph')
+                        if(language_base!= 'Japanese'):
+                            paragraph.add_run(paragraph_first[language_base] + constellation_translated + paragraph_last[language_base], style = 'GaN_paragraph')
                         else:
-                            paragraph.add_run(firstParagraphfirst[languageBase] + firstParagraphLast[languageBase] + constellationTranslated, style = 'GaNParagraph')
+                            paragraph.add_run(paragraph_first[language_base] + paragraph_last[language_base] + constellation_translated, style = 'GaN_paragraph')
                 
                 if website1 in paragraph.text:
-                    newLink = paragraph.text.replace("2018",str(year))
+                    new_link = paragraph.text.replace("2018",str(year))
                     paragraph.text = None
-                    paragraph.add_run(newLink, style = 'GaNLinks')
+                    paragraph.add_run(new_link, style = 'GaN_links')
                 
                 elif website2 in paragraph.text:
-                    newLink = paragraph.text.replace("2019",str(year))
+                    new_link = paragraph.text.replace("2019",str(year))
                     paragraph.text = None
-                    paragraph.add_run(newLink, style = 'GaNLinks')
+                    paragraph.add_run(new_link, style = 'GaN_links')
 
     #Save a copy with a new name, date and language.
-    dirPath = dirPath.rsplit('_', 2)[0]
-    newWordPath = os.path.join(dirPath + "\\GaN_{year}_ActivityGuide_{cons}_lat_".format(year = year, cons = constName) + str(latitude) + "_" + str(languageBase) + ".docx")
-    workingDoc.save(newWordPath)
+    dir_path = dir_path.rsplit('_', 2)[0]
+    new_word_path = os.path.join(dir_path + "\\GaN_{year}_ActivityGuide_{cons}_lat_".format(year = year, cons = const_name) + str(latitude) + "_" + str(language_base) + ".docx")
+    working_doc.save(new_word_path)
+
 
     #Print information about the working file on
-    print("The " + languageBase + " activity guide for the constellation {cons}".format(cons = constName) + " in the latitude {lat}".format(lat = latitude) +" south has been completed \n___________________________________________________________________________________________________________\n")
+    print("The " + language_base + " activity guide for the constellation {cons}".format(cons = const_name) + " in the latitude {lat}".format(lat = latitude) +" south has been completed \n___________________________________________________________________________________________________________\n")
 
     # return the new doc path to make a list with it.
-    return newWordPath
+    return new_word_path
 
 
 

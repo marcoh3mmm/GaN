@@ -3,12 +3,16 @@
 
 ## Table of contents
 * [Description](#description)
-* [Languages](#laguages)
+* [Languages](#languages)
 * [Constellations](#constellations)
 * [Technologies](#technologies)
-* [Charts](#charts)
-* [How it works](#how_it_works)
-* [Project Status](#project_status)
+* [How it works](#how-it-works)
+* [Sources](#sources)
+* [Screenshots](#screenshots)
+* [Special Thanks](#special-thanks)
+* [Project Status](#project-status)
+* [Contact](#contact)
+
 
 ## Description
 
@@ -79,15 +83,43 @@ The 20 Languages for the GaN Activity guide are:
     * multiprocessing
     * BeautifulSoup
     * Requests
+    * Datetime
 
-## charts
 The charts are taken from the website "https://www.globeatnight.org/magcharts"
 
 ## How it works 
 1. The constellations and the observation dates must be created, edited and saved in the excel file: Gan_cons_and_dates.xlsx
-2. The Activity Guides changes should be edited in the word files for each language
-3. While runnig the program, the different aActivity guides for the selected contellations and languages will be created and saved in PDF  format.
+    a. The Constellation's names must be introduced Capitalize and without blank spaces except for " Canis Major"(which must be inserted like this)
+    b. The month's names must be introduced completely without symbols like "." , "-" etc...
+    c. The dates must be introduced in number format without symbols like "." , "-" etc... 
+2. The Activity Guides changes should be edited in the word files for each language, by opening each file and save the changes.
+    a. Do not change the headers that contents the Constellation's names and the dates.
+    b. Do note change the first paragraph of the Activity Guide
+3. While runnig the program, the different aActivity guides for the selected contellations and languages will be created like .docx and saved in PDF  format. At the end of the execution the word files will be removed.
+
+## Sources
+* Python docx documentation: https://python-docx.readthedocs.io/en/latest/
+* Platzi: https://platzi.com/cursos/webscraping/
+* Elliot Kisiel: https://github.com/NOAO-dark-sky/GaN
+* The charts are taken from the website "https://www.globeatnight.org/magcharts"
+
+## Screenshots
+![Screenshot1](./support_images/Screenshot1.png)
+![Screenshot2](./support_images/Screenshot2.png)
+![Screenshot3](./support_images/Screenshot3.png)
+![Screenshot4](./support_images/Screenshot4.png)
+
+
+## Special thanks
+
+I want to especially thank Javier Enciso, Juan David Vargas and the Enciso Systems team.
+
 
 ## Project status
 
-Now working on the .docx to .pdf conversion (last actualization 07-17-2022)
+Now working on the GUI hoping a great outcome with flakwebgui (last actualization 07-25-2022)
+
+## Contact
+
+Created by Marco Moreno - feel free to contact me! 
+marco.datadev@gmail.com
