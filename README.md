@@ -3,15 +3,14 @@
 
 ## Table of contents
 * [Description](#description)
-* [Languages](#laguages)
+* [Languages](#languages)
 * [Constellations](#constellations)
 * [Technologies](#technologies)
-* [Charts](#charts)
-* [How it works](#how_it_works)
+* [How it works](#how-it-works)
 * [Sources](#sources)
 * [Screenshots](#screenshots)
-* [Special Thanks](#special_thanks)
-* [Project Status](#project_status)
+* [Special Thanks](#special-thanks)
+* [Project Status](#project-status)
 * [Contact](#contact)
 
 
@@ -86,7 +85,6 @@ The 20 Languages for the GaN Activity guide are:
     * Requests
     * Datetime
 
-## charts
 The charts are taken from the website "https://www.globeatnight.org/magcharts"
 
 ## How it works 
@@ -100,9 +98,10 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
 3. While runnig the program, the different aActivity guides for the selected contellations and languages will be created like .docx and saved in PDF  format. At the end of the execution the word files will be removed.
 
 ## Sources
-* Python docx Documentation: https://python-docx.readthedocs.io/en/latest/
+* Python docx documentation: https://python-docx.readthedocs.io/en/latest/
 * Platzi: https://platzi.com/cursos/webscraping/
 * Elliot Kisiel: https://github.com/NOAO-dark-sky/GaN
+* The charts are taken from the website "https://www.globeatnight.org/magcharts"
 
 ## Screenshots
 ![Screenshot1](./support_images/Screenshot1.png)
