@@ -3,31 +3,82 @@ import time
 import os
 import sys
 import multiprocessing
+from flask import Flask, request, make_response, redirect, render_template
+from flaskwebgui import FlaskUI #get the FlaskUI class
+from flask_bootstrap import Bootstrap
+
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),os.pardir))
 sys.path.append(PROJECT_ROOT)
-import Activity_Guide_Changes as agc
 
+
+#import Activity_Guide_Changes as agc
+
+app = Flask(__name__)
+bootstrap = Bootstrap(app)
+
+north_constellations = ["Select All", "Perseus", "Leo", "Bootes", "Cygnus", "Pegasus", "Orion", "Hercules"]
+north_languages = ["Select All", "Catalan", "Chinese", "Czech", "English", "Finnish", "French", "Galician", "German", "Greek", "Indonesian", "Japanese", "Polish", "Portuguese", "Romanian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "Thai"]
+latitudes_north = ["Select All", "0", "10N", "20N", "30N", "40N", "50N"]
+
+south_constellations = ["Select All", "Orion","Canis Major", "Crux", "Leo", "Bootes", "Scorpius", "Hercules", "Sagittarius", "Grus", "Pegasus"]
+south_languages = ["Select All", "English", "French", "Indonesian", "Portuguese", "Spanish"]
+latitudes_south = ["Select All", "0", "10S", "20S", "30S", "40S"]
+
+# Feed it the flask app instance 
+ui = FlaskUI(app)
+
+# do your logic as usual in Flask
+@app.route("/", methods=["GET", 'POST'])
+def index():
+    response = make_response(redirect('/selections'))
+    return render_template('index.html')
+
+@app.route("/selections", methods=["GET", 'POST'])
+def selections():
+    context = {
+        'north_constellations' : north_constellations,
+        'north_languages' : north_languages,
+        'latitudes_north' : latitudes_north,
+        'south_constellations' :south_constellations,
+        'south_languages' :south_languages,
+        'latitudes_south' : latitudes_south,
+        }
+
+    if request.method == 'POST':
+        print(request.form.get('north_const'))
+        return "Done"
+    return render_template('selections.html', **context)
 
 
 if __name__ =='__main__':
 
+    debug = True
+
+    if debug:
+        app.run()
+    else:
+        ui.run()
+
+'''
+
     # Start time counter
     start = time.time()
+
 
     num_process = 8
     images_downloaded = False
     # Get the data from the User for north constellations
     north_year = 2022
-    north_constellations = ["Leo"]
-    north_languages = ["Galician"]
-    latitudes_north = ["0"]
+    north_constellations = ["Perseus", "Leo", "Bootes", "Cygnus", "Pegasus", "Orion", "Hercules"]
+    north_languages = ["Catalan", "Chinese", "Czech", "English", "Finnish", "French", "Galician", "German", "Greek", "Indonesian", "Japanese", "Polish", "Portuguese", "Romanian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "Thai"]
+    latitudes_north = ["50N", "40N", "30N", "20N", "10N", "0"]
 
     # Get the data from the User for south constellations
     south_year = north_year
-    south_constellations = ["Canis Major"]
-    south_languages = ["Spanish", "English"]
-    latitudes_south = ["0"]
+    south_constellations = ["Orion","Canis Major", "Crux", "Leo", "Bootes", "Scorpius", "Hercules", "Sagittarius", "Grus", "Pegasus"]
+    south_languages = ["English", "French", "Indonesian", "Portuguese", "Spanish"]
+    latitudes_south = ["0", "10S", "20S", "30S", "40S"]
  
     
     # Create the folders for the pdf files
@@ -176,3 +227,4 @@ if __name__ =='__main__':
     # Finishing time counter and getting time of execution
     finish = time.time() - start
     print('Execution time: ', time.strftime("%H:%M:%S", time.gmtime(finish)))
+    '''

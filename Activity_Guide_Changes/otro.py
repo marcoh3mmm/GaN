@@ -3,8 +3,8 @@ from docx2pdf import convert
 '''
 northYear = 2022
 north_constellations = ["Perseus", "Leo", "Bootes", "Cygnus", "Pegasus", "Orion", "Hercules"]
-north-languages = ["Catalan", "Chinese", "Czech", "English", "Finnish", "French", "Galician", "German", "Greek", "Indonesian", "Japanese", "Polish", "Portuguese", "Romanian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "Thai"]
-latitudes-north = ["50N", "40N", "30N", "20N", "10N", "0"]
+north_languages = ["Catalan", "Chinese", "Czech", "English", "Finnish", "French", "Galician", "German", "Greek", "Indonesian", "Japanese", "Polish", "Portuguese", "Romanian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "Thai"]
+latitudes_north = ["50N", "40N", "30N", "20N", "10N", "0"]
 # Creating the directories and the Paths for North Constellations
 northDirectories= agc.createNorthDir(northYear, northConstellations)
 northPaths = agc.createNorthPaths(northDirectories, northLanguages)

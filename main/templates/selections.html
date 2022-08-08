@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+
+{% block title %}
+    {{ super()}}
+    Selections
+{%endblock%}
+
+{% block content %}
+<div class="col-lg-12 text-center" style="margin-bottom: 4px">
+        <label  for ="year"  style="font-size: 25px; font-weight:300">Select Year</label>
+            <select name="year" id="year" class="form_control" style="font-size: 22px">
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+            </select>
+    </div>
+
+    
+    
+    <div class="col-lg-6">
+        <h3 class="text-center">North Constellations</h3>
+
+
+        <div class="col-lg-3">
+            <h4 class="text-center">Constellations</h4>
+            <ul style="list-style: none">
+                {% for constellation in north_constellations %}
+                    <div class="checkbox">
+                        <label><input type="checkbox" value = "{{ macros.render_north_constellations(constellation)}}" name="north_const">
+                        {{ macros.render_north_constellations(constellation)}}
+                        </label>
+                    </div>
+                
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-lg-6">
+            <h4 class="text-center">Languages</h4>
+            <ul class="ul-columns" style="list-style: none">
+                {% for language in north_languages %}
+                    <div class="checkbox">
+                            <label><input type="checkbox" value = "{{ macros.render_north_languages(language)}}" name="north_const">
+                            {{ macros.render_north_languages(language)}}
+                            </label>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="col-lg-3">
+            <h4 class="text-center">Latitudes</h4>
+            <ul style="list-style: none;">
+                {% for lat in latitudes_north %}
+                    <div class="checkbox">
+                        <label><input type="checkbox" value = "{{ macros.render_latitudes_north(lat)}}" name="north_const">
+                        {{ macros.render_latitudes_north(lat)}}
+                        </label>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    
+
+    <div class="col-lg-6" style="border-left: 3px solid black">
+        <h3 class="text-center">South Constellations</h3>
+
+        <div class="col-lg-4">
+            <h4 class="text-center">Constellations</h4>
+            <ul style="list-style: none;">
+                {% for constellation in south_constellations %}
+                    <div class="checkbox">
+                        <label><input type="checkbox" value = "{{ macros.render_south_constellations(constellation)}}" name="south_const">
+                        {{ macros.render_south_constellations(constellation)}}
+                        </label>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-lg-4">  
+            <h4 class="text-center">Languages</h4>
+            <ul style="list-style: none;">
+                {% for language in south_languages %}
+                    <div class="checkbox">
+                        <label><input type="checkbox" value = "{{ macros.render_south_languages(language)}}" name="south_const">
+                        {{ macros.render_south_languages(language)}}
+                        </label>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-lg-4">
+            <h4 class="text-center">Latitudes</h4>
+            <ul style="list-style: none;">
+                {% for lat in latitudes_south %}
+                    <div class="checkbox">
+                        <label><input type="checkbox" value = "{{ macros.render_latitudes_south(lat)}}" name="south_const">
+                        {{ macros.render_latitudes_south(lat)}}
+                        </label>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-lg-12" style="margin-top: 4px"> 
+        <div class="col-lg-6"> 
+            <div class="checkbox, text-right" style="padding:2px">
+                <label for="download_charts"  style="font-size: 21px; font-weight:300">Download Charts</label>
+                <input type="checkbox" value = "" name="download_charts">   
+            </div>
+        </div>
+
+        <div class="col-lg-6"> 
+            <button   button type="button" class="btn btn-default btn-lg">Submit</button>
+        </div>
+    </div>
+{% endblock %}
