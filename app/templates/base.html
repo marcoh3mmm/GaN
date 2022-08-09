@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<!--
+<script src="{{ url_for('static', filename='js/keep.alive.js')}}"></script>
+-->
+
 {% extends 'bootstrap/base.html' %}
 
 {% block head %}
@@ -6,7 +11,9 @@
     <title>
         {% block title %}GaN |{% endblock %}
     </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/main.css')}}">
+    <link rel="icon" href="data:,">
 {% endblock %}
 
 {% block body %}

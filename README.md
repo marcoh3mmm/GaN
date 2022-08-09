@@ -2,16 +2,20 @@
 
 
 ## Table of contents
-* [Description](#description)
-* [Languages](#languages)
-* [Constellations](#constellations)
-* [Technologies](#technologies)
-* [How it works](#how-it-works)
-* [Sources](#sources)
-* [Screenshots](#screenshots)
-* [Special Thanks](#special-thanks)
-* [Project Status](#project-status)
-* [Contact](#contact)
+- [GaN (Globe at Nigth) Activity Guides Generator](#gan-globe-at-nigth-activity-guides-generator)
+  - [Table of contents](#table-of-contents)
+  - [Description](#description)
+  - [Languages](#languages)
+  - [Constellations:](#constellations)
+    - [Northern Hemisphere:](#northern-hemisphere)
+    - [Southern Hemisphere:](#southern-hemisphere)
+- [Technologies](#technologies)
+  - [How it works](#how-it-works)
+  - [Sources](#sources)
+  - [Screenshots](#screenshots)
+  - [Special thanks](#special-thanks)
+  - [Project status](#project-status)
+  - [Contact](#contact)
 
 
 ## Description
@@ -104,10 +108,10 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
 * The charts are taken from the website "https://www.globeatnight.org/magcharts"
 
 ## Screenshots
-![Screenshot1](./support_images/Screenshot1.png)
-![Screenshot2](./support_images/Screenshot2.png)
-![Screenshot3](./support_images/Screenshot3.png)
-![Screenshot4](./support_images/Screenshot4.png)
+![Screenshot1](./images_local/support_images/Screenshot1.png)
+![Screenshot2](./images_local/support_images/Screenshot2.png)
+![Screenshot3](./images_local/support_images/Screenshot3.png)
+![Screenshot4](./images_local/support_images/Screenshot4.png)
 
 
 ## Special thanks

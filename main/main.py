@@ -4,18 +4,22 @@ import os
 import sys
 import multiprocessing
 from flask import Flask, request, make_response, redirect, render_template
-from flaskwebgui import FlaskUI #get the FlaskUI class
-from flask_bootstrap import Bootstrap
+#from flaskwebgui import FlaskUI #get the FlaskUI class
+from flask_wtf import FlaskForm
+from wtforms import StringField,SubmitField
+from wtforms.validators import DataRequired
+
 
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),os.pardir))
 sys.path.append(PROJECT_ROOT)
 
+from app import create_app
 
 #import Activity_Guide_Changes as agc
 
-app = Flask(__name__)
-bootstrap = Bootstrap(app)
+app = create_app()
+
 
 north_constellations = ["Select All", "Perseus", "Leo", "Bootes", "Cygnus", "Pegasus", "Orion", "Hercules"]
 north_languages = ["Select All", "Catalan", "Chinese", "Czech", "English", "Finnish", "French", "Galician", "German", "Greek", "Indonesian", "Japanese", "Polish", "Portuguese", "Romanian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "Thai"]
@@ -25,16 +29,23 @@ south_constellations = ["Select All", "Orion","Canis Major", "Crux", "Leo", "Boo
 south_languages = ["Select All", "English", "French", "Indonesian", "Portuguese", "Spanish"]
 latitudes_south = ["Select All", "0", "10S", "20S", "30S", "40S"]
 
+
 # Feed it the flask app instance 
-ui = FlaskUI(app)
+#ui = FlaskUI(app,width=1500,height=800)
+
+
+class selectionsForm(FlaskForm):
+    year=StringField('year',validators=[DataRequired()])
+    submit =SubmitField('Submit')
 
 # do your logic as usual in Flask
-@app.route("/", methods=["GET", 'POST'])
+@app.route('/', methods=["GET", 'POST'])
 def index():
-    response = make_response(redirect('/selections'))
+    home=make_response(redirect('/index'))
+    generate_activity_guides = make_response(redirect('/selections'))
     return render_template('index.html')
 
-@app.route("/selections", methods=["GET", 'POST'])
+@app.route('/selections', methods=["GET", 'POST'])
 def selections():
     context = {
         'north_constellations' : north_constellations,
@@ -50,15 +61,16 @@ def selections():
         return "Done"
     return render_template('selections.html', **context)
 
+@app.errorhandler(404)
+def not_found(error):
+
+    return render_template('404.html', error=error)
+
+
 
 if __name__ =='__main__':
 
-    debug = True
-
-    if debug:
-        app.run()
-    else:
-        ui.run()
+    app.run()
 
 '''
 
