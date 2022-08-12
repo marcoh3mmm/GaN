@@ -6,7 +6,7 @@ import multiprocessing
 from flask import Flask, request, make_response, redirect, render_template
 #from flaskwebgui import FlaskUI #get the FlaskUI class
 from flask_wtf import FlaskForm
-from wtforms import StringField,SubmitField
+from wtforms import BooleanField,SubmitField, SelectMultipleField,SelectField,widgets
 from wtforms.validators import DataRequired
 
 
@@ -22,7 +22,7 @@ app = create_app()
 
 
 north_constellations = ["Select All", "Perseus", "Leo", "Bootes", "Cygnus", "Pegasus", "Orion", "Hercules"]
-north_languages = ["Select All", "Catalan", "Chinese", "Czech", "English", "Finnish", "French", "Galician", "German", "Greek", "Indonesian", "Japanese", "Polish", "Portuguese", "Romanian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "Thai"]
+north_languages= ["Select All", "Catalan", "Chinese", "Czech", "English", "Finnish", "French", "Galician", "German", "Greek", "Indonesian", "Japanese", "Polish", "Portuguese", "Romanian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "Thai"]
 latitudes_north = ["Select All", "0", "10N", "20N", "30N", "40N", "50N"]
 
 south_constellations = ["Select All", "Orion","Canis Major", "Crux", "Leo", "Bootes", "Scorpius", "Hercules", "Sagittarius", "Grus", "Pegasus"]
@@ -34,9 +34,38 @@ latitudes_south = ["Select All", "0", "10S", "20S", "30S", "40S"]
 #ui = FlaskUI(app,width=1500,height=800)
 
 
-class selectionsForm(FlaskForm):
-    year=StringField('year',validators=[DataRequired()])
+def select_multi_checkbox(field, ul_class='', **kwargs):
+    kwargs.setdefault('type', 'checkbox')
+    field_id = kwargs.pop('id', field.id)
+    html = ['<ul %s>' % widgets.html_params(id=field_id, class_=ul_class)]
+    for value, label, checked in field.iter_choices():
+        choice_id = '%s-%s' % (field_id, value)
+        options = dict(kwargs, name=field.name, value=value, id=choice_id)
+        if checked:
+            options['checked'] = 'checked'
+        html.append('<li><input %s /> ' % widgets.html_params(**options))
+        html.append('<label for="%s">%s</label></li>' % (field_id, label))
+    html.append('</ul>')
+    return ''.join(html)
+
+
+
+class SelectionsForm(FlaskForm):
+    years=[2020,2021,2022,2023,2024,2025]
+    year=SelectField('Select Year',choices=(years))
+    north_constellations = SelectMultipleField('Constellations',choices=(north_constellations), widget=select_multi_checkbox)
+    north_languages = SelectMultipleField('Languagues',choices=(north_languages), widget=select_multi_checkbox)
+    north_latitudes = SelectMultipleField('Latitudes',choices=(latitudes_north), widget=select_multi_checkbox)
+
+    south_constellations = SelectMultipleField('Constellations',choices=(south_constellations), widget=select_multi_checkbox)
+    south_languages = SelectMultipleField('Languagues',choices=(south_languages), widget=select_multi_checkbox)
+    south_latitudes = SelectMultipleField('Latitudes',choices=(latitudes_south), widget=select_multi_checkbox)
+    
+    download_charts=BooleanField('Download Charts')
+    select_everything=BooleanField('Select All')
     submit =SubmitField('Submit')
+
+
 
 # do your logic as usual in Flask
 @app.route('/', methods=["GET", 'POST'])
@@ -56,10 +85,18 @@ def selections():
         'latitudes_south' : latitudes_south,
         }
 
-    if request.method == 'POST':
-        print(request.form.get('north_const'))
-        return "Done"
     return render_template('selections.html', **context)
+
+@app.route('/selections2', methods=["GET", 'POST'])
+def selections2():
+    selections_form = SelectionsForm()
+    context = {
+        'selections_form': selections_form
+        }
+
+    return render_template('selections2.html', **context)
+
+
 
 @app.errorhandler(404)
 def not_found(error):

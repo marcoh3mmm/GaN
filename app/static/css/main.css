@@ -1,6 +1,6 @@
 html *{
     font-family: Helvetica, Neue, Arial, sans-serif;
-    
+    font-weight: 300;
     }
 
     
@@ -8,6 +8,7 @@ html *{
 h1 {
         text-align:center;
     }
+
 
 .center-block {
     display: block;
@@ -48,6 +49,9 @@ h1 {
         line-height:80px;   
     }
 
+ul{
+    list-style: none;
+}
 
 .ul-columns {
     columns: 2;
