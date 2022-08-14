@@ -17,7 +17,7 @@ from shutil import rmtree
 def import_south_data():
     # Define the path for the excel file
     excel_path = os.getcwd()
-    excel_path = os.path.join(excel_path + "\GaN\Activity_Guide_Changes\GaN_cons_and_dates.xlsx")
+    excel_path = os.path.join(excel_path + "\Activity_Guide_Changes\GaN_cons_and_dates.xlsx")
 
     # Get Data from the Excel File using Pandas
     # Capitalize  constellations names for a later comparison
@@ -158,7 +158,7 @@ def south_translations(dir_paths):
 
     
     # Define the Word file path as the original file
-    word_path = os.path.abspath("..\Gan\GaN\docs_to_change\GaN2018_ActivityGuide_Scorpius_S_")
+    word_path = os.path.abspath("..\GaN\docs_to_change\GaN2018_ActivityGuide_Scorpius_S_")
     working_doc = open_word_doc2(word_path + str(language_base) + ".docx")
 
     # styles of each paragraph to kkep the original word styles

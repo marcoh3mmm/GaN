@@ -6,7 +6,7 @@ from shutil import rmtree
 # Create a new folder to download the images
 def create_image_dir():
     save_path = os.getcwd() 
-    save_path = os.path.join(save_path + "\GaN\images")
+    save_path = os.path.join(save_path + "\images")
     rmtree(save_path)
     os.mkdir(save_path)
     return save_path
@@ -47,7 +47,7 @@ def images_links(constellations, latitudes):
 def images_download(link):
     #Change the path to the new folder
     new_path = os.getcwd()
-    new_path = os.path.join(new_path + "\GaN\images\\")
+    new_path = os.path.join(new_path + "\images\\")
 
     # Verify the status code of the link
     if requests.get(link).status_code == 200:

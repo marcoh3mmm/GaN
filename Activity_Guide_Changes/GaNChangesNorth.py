@@ -18,7 +18,8 @@ from shutil import rmtree
 def import_north_data():
     # Define the path for the excel file
     excel_path = os.getcwd()
-    excel_path = os.path.join(excel_path + "\GaN\Activity_Guide_Changes\GaN_cons_and_dates.xlsx")
+    print(excel_path)
+    excel_path = os.path.join(excel_path + "\Activity_Guide_Changes\GaN_cons_and_dates.xlsx")
 
     # Get Data from the Excel File using Pandas
     # Capitalize  constellations names for a later comparison
@@ -265,7 +266,7 @@ def north_translations(dir_paths):
 
     
     # Define the Word file path as the original file
-    word_path = os.path.abspath("..\Gan\GaN\docs_to_change\GaN2018_ActivityGuide_Perseus_N_")
+    word_path = os.path.abspath("..\GaN\docs_to_change\GaN2018_ActivityGuide_Perseus_N_")
     working_doc = open_word_doc1(word_path + str(language_base) + ".docx")
     
     # Chinese in not in the dictionary of deep_translator, is better "chinese (traditional)"

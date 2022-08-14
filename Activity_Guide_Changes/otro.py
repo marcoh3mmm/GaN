@@ -98,3 +98,25 @@ def docx2pdf(input_file):
         doc.Close()
         word.Quit()
         print("renamed and printed:  " + pdf_path)
+
+
+
+
+        @app.route('/selections', methods=["GET", 'POST'])
+def selections():
+    selections_form = SelectionsForm()
+    context = {
+        'north_constellations' : north_consts,
+        'north_languages' : north_langs,
+        'latitudes_north' : north_lats,
+        'south_constellations' :south_consts,
+        'south_languages' :south_langs,
+        'latitudes_south' : south_lats,
+        'selections_form': selections_form
+        }
+
+    if request.method == 'POST':
+        year= selections_form.year.data
+        print(year)
+
+    return render_template('selections.html', **context)

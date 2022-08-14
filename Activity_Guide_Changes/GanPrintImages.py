@@ -22,7 +22,7 @@ def open_local_image(file_name):
     latitude = file_name.split('_')[-2]
 
     path = os.getcwd() 
-    path = os.path.join(path + "\GaN\images_local")
+    path = os.path.join(path + "\images_local")
 
     lat = transform_latitude(latitude)
 
@@ -88,7 +88,7 @@ def open_download_image(file_name):
     latitude = file_name.split('_')[-2]
 
     path = os.getcwd() 
-    path = os.path.join(path + "\GaN\images")
+    path = os.path.join(path + "\images")
 
     lat = transform_latitude(latitude)
 
