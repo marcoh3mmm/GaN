@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import BooleanField,SubmitField, SelectMultipleField,SelectField,widgets
+from wtforms import BooleanField,SubmitField, SelectMultipleField,SelectField,widgets, validators
 
 years=[2020,2021,2022,2023,2024,2025]
 north_consts = ["Select All", "Perseus", "Leo", "Bootes", "Cygnus", "Pegasus", "Orion", "Hercules"]
@@ -26,7 +26,18 @@ def select_multi_checkbox(field, ul_class='', **kwargs):
     html.append('</ul>')
     return ''.join(html)
 
+class MyBooleanField(BooleanField):
+    def __init__(self, label=None, validators=None, false_values=None, **kwargs):
+        # don't accept blank as False, so that default will trigger
+        super(MyBooleanField, self).__init__(label, validators, (False, 'false', 0, '0'), **kwargs)
 
+    def process_formdata(self, valuelist):
+        if not valuelist or valuelist[0] == '' or valuelist[0] is None:
+            self.data = self.default
+        elif valuelist[0] in self.false_values:
+            self.data = False
+        else:
+            self.data = True
 
 class SelectionsForm(FlaskForm):
     year=SelectField('Select Year',choices=(years))
@@ -38,7 +49,7 @@ class SelectionsForm(FlaskForm):
     south_langs = SelectMultipleField('Languagues',choices=(south_langs), widget=select_multi_checkbox)
     south_lats = SelectMultipleField('Latitudes',choices=(south_lats), widget=select_multi_checkbox)
     
-    download_charts=BooleanField('Download Charts')
+    download_charts=MyBooleanField('Download Charts', validators=[validators.AnyOf([True, False])])
     select_everything=BooleanField('Select All')
     submit =SubmitField('Submit')
 

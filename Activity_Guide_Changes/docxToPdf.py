@@ -9,7 +9,6 @@ def create_pdf_folder():
     current_day_hour = datetime.now()
     os.chdir('../')
     save_path = os.getcwd()
-    print(save_path)
     save_path = os.path.join(save_path + "\pdf_files\Activity_Guides_" + current_day_hour.strftime('%Y%m%d_%H%M%S'))
     if not os.path.exists(save_path):
         os.makedirs(save_path)
