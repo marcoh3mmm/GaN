@@ -18,7 +18,6 @@ from shutil import rmtree
 def import_north_data():
     # Define the path for the excel file
     excel_path = os.getcwd()
-    print(excel_path)
     excel_path = os.path.join(excel_path + "\Activity_Guide_Changes\GaN_cons_and_dates.xlsx")
 
     # Get Data from the Excel File using Pandas

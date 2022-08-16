@@ -29,6 +29,13 @@ h1 {
         color: white;
       }
 
+.btn-lg {
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    width: 300px;
+}
+
 .navbar {
     min-height: 140px;
     background-color: black;
@@ -58,6 +65,8 @@ ul{
     -webkit-columns: 2;
     -moz-columns: 2;
     }
+
+
 
 
 

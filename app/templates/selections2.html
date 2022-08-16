@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+
 <!--
 <script src="{{ url_for('static', filename='js/keep.alive.js')}}"></script>
 -->
+
 
 {% extends 'base.html' %}
 {% import 'macros.html' as macros %}
@@ -13,7 +15,11 @@
 {%endblock%}
 
 {% block content %}
+
+
+
 <form action="{{ url_for('selections2')}}" method="POST">
+    {{ selections_form.hidden_tag() }}
     <div class="col-lg-12 text-center" style="margin-bottom: 4px;font-size: 20px; padding: 0px">
         <label  for ="year"  style="font-size: 24px; font-weight:300">Select Year</label>
         {{selections_form.year}}       
@@ -64,11 +70,13 @@
     <div class="col-lg-12" style="margin-top: 2px"> 
         <div class="col-lg-6">
             <div class="col-lg-6"> 
+                <!--
                 <label for="select_everything"  style="font-size: 21px; font-weight:300">Select All Documents</label>
                 {{selections_form.select_everything}}
+                -->
             </div>
             <div class="col-lg-6"> 
-                <label for="download_charts"  style="font-size: 21px; font-weight:300">Download Charts</label>
+                <label for="download_charts"  style="font-size: 25px; font-weight:300">Download Charts</label>
                 {{selections_form.download_charts}}
             </div>
         </div>
@@ -79,6 +87,12 @@
             </div>
         </div>
     </div>
-</form>  
+</form>
+
+<script>
+
+</script>
+
+
 
 {% endblock %}
