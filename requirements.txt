@@ -1,0 +1,9 @@
+flask
+flaskwebgui
+deep-translator
+python-docx
+pandas
+beautifulsoup4
+requests
+Flask-WTF
+WTForms

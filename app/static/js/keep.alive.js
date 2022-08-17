@@ -1,4 +1,4 @@
-/*
+
 async function getRequest(url='') {
     const response = await fetch(url, {
       method: 'GET',
@@ -21,4 +21,3 @@ function keep_alive_server(){
 setInterval(keep_alive_server, interval_request)()
 
 })
-*/

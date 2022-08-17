@@ -1,3 +1,8 @@
+import sys, os
+if sys.executable.endswith('pythonw.exe'):
+    sys.stdout = open(os.devnull, 'w')
+    sys.stderr = open(os.path.join(os.getenv('TEMP'), 'stderr-{}'.format(os.path.basename(sys.argv[0]))), "w")
+    
 # -*- coding:utf-8 -*-
 import time
 import os
@@ -5,10 +10,7 @@ import sys
 import multiprocessing
 from datetime import date
 from flask import request, make_response, redirect, render_template,session,flash, url_for
-
-
-#from flaskwebgui import FlaskUI #get the FlaskUI class
-
+from flaskwebgui import FlaskUI #get the FlaskUI class
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__),os.pardir))
 sys.path.append(PROJECT_ROOT)
@@ -21,7 +23,7 @@ app = create_app()
 
 
 # Feed it the flask app instance 
-#ui = FlaskUI(app,width=1500,height=800)
+ui = FlaskUI(app,width=1500,height=800,start_server='flask')
 
 
 # do your logic as usual in Flask
@@ -67,6 +69,8 @@ def selections2():
     context = {
         'selections_form': selections_form
         }
+
+    
 
     if request.method == 'POST':
         year=request.form.get('year')
@@ -298,7 +302,7 @@ def not_found(error):
 
 if __name__ =='__main__':
 
-    app.run()
+    ui.run()
     
 
     

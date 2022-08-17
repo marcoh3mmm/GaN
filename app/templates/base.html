@@ -34,5 +34,6 @@
 
     {%block scripts %}
        {{ super() }}
+       <script src="{{ url_for('static', filename='js/keep.alive.js')}}"></script>
     {% endblock %}
 {% endblock %}
