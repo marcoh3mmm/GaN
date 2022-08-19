@@ -23,7 +23,7 @@ app = create_app()
 
 
 # Feed it the flask app instance 
-ui = FlaskUI(app,width=1500,height=800,start_server='flask')
+ui = FlaskUI(app,width=1550,height=800,start_server='flask')
 
 
 # do your logic as usual in Flask
@@ -59,6 +59,7 @@ def pdf_files():
     os.chdir('main')
     return render_template('index.html')   
 
+
 @app.route('/selections2', methods=["GET", 'POST'])
 def selections2():
     selections_form = SelectionsForm()
@@ -81,6 +82,10 @@ def selections2():
         south_langs=request.form.getlist('south_langs')
         south_lats=request.form.getlist('south_lats')
         download_check = request.form.get('download_charts')
+
+        print(year,north_consts,north_langs,north_lats,south_consts,south_langs,south_lats)
+
+        
         #select_everything = request.form.get('download_charts')
         if len(north_consts) > 0 and len(north_langs) == 0 and len(north_lats)==0:
             flash('To get an Activity guide for a North Constellation, you must select at least one Constellation, one Language, and one Latitude simultaneously.')
@@ -288,7 +293,7 @@ def selections2():
 
             flash("The activity guides are available for use.")
             os.startfile(pdf_folder)
-
+            
     return render_template('selections2.html', **context)
 
 
