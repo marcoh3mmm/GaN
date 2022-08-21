@@ -27,7 +27,7 @@
     <div class="col-lg-6" style="margin:0px; padding: 0px">
         <h3 class="text-center" style="font-weight: 550">North Constellations</h3>
 
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <h4 class="text-center" style="font-weight: 550">Constellations</h4>
             <td>
                 <div style="text-align: center; font-weight: 550; font-size: 15px">
@@ -35,10 +35,12 @@
                     <br>
                 </div>
             </td>
-            {{ selections_form.north_consts}}
+            <div class="center-justified">
+                {{ selections_form.north_consts}}
+            </div>
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <h4 class="text-center" style="font-weight: 550">Languages</h4>
             <td>
                 <div style="text-align: center; font-weight: 550; font-size: 15px">
@@ -46,12 +48,12 @@
                     <br>
                 </div>
             </td>
-                <ul class="ul-columns">
+                <ul class="list" style="padding: 0px; margin: 0px">
                     {{ selections_form.north_langs}}
                 </ul>
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-lg-4" >
             <h4 class="text-center" style="font-weight: 550">Latitudes</h4>
             <td>
                 <div style="text-align: center; font-weight: 550; font-size: 15px">
@@ -59,7 +61,9 @@
                     <br>
                 </div>
             </td>
-            {{ selections_form.north_lats }}
+            <div class="center-justified">
+                {{ selections_form.north_lats }}
+            </div>
         </div>
     </div>
 
@@ -75,7 +79,9 @@
                     <br>
                 </div>
             </td>
-            {{ selections_form.south_consts}}
+            <div class="center-justified">
+                {{ selections_form.south_consts}}
+            </div>
         </div>
 
         <div class="col-lg-4">
@@ -86,7 +92,9 @@
                     <br>
                 </div>
             </td>
+            <div class="center-justified">
                 {{ selections_form.south_langs}}
+            </div>
         </div>
 
         <div class="col-lg-4">
@@ -97,11 +105,13 @@
                     <br>
                 </div>
             </td>
-            {{ selections_form.south_lats }}
+            <div class="center-justified">
+                {{ selections_form.south_lats }}
+            </div>
         </div>
     </div>
     
-    <div class="col-lg-12" style="margin-top: 2px"> 
+    <div class="col-lg-12" style="margin-top: 4px"> 
         <div class="col-lg-6">
             <div class="col-lg-6"> 
                 <!--

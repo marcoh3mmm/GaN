@@ -56,15 +56,29 @@ h1 {
         line-height:80px;   
     }
 
+    
+.center-justified {
+    margin-left: 33px;
+    text-align: justify;
+    width: 16em;
+    }
+
 ul{
     list-style: none;
 }
 
-.ul-columns {
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
+ul.list {
+    width: 300px;  
     }
+  
+ul.list li{
+    display:inline-block;
+    width: 100px;
+    }
+
+
+
+
 
 
 
