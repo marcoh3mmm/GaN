@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<!-- import base, macros and bootstrap -->
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+{% import 'bootstrap/wtf.html' as wtf %} 
+
+<!-- name of the page -->
+{% block title %}
+    {{ super()}}
+    Selections
+{%endblock%}
+
+{% block content %}
+
+<!-- display the form-->
+<form action="{{ url_for('selections2')}}" method="POST">
+    {{ selections_form.hidden_tag() }}
+    <!-- Display the Years List -->
+    <div class="col-lg-12 text-center" style="margin-bottom: 4px;font-size: 20px; padding: 0px">
+        <label  for ="year"  style="font-size: 24px; font-weight:300">Select Year</label>
+        {{selections_form.year}}       
+    </div>
+
+    <!-- Divide the screen in two columns  -->
+    <div class="col-lg-6" style="margin:0px; padding: 0px">
+        <h3 class="text-center" style="font-weight: 550">North Constellations</h3>
+
+        <!-- Divide each column in three columns  -->
+        <div class="col-lg-4">
+            <!-- Title for North constellations -->
+            <h4 class="text-center" style="font-weight: 550">Constellations</h4>
+            <!-- Display check all  -->
+            <td>
+                <div style="text-align: center; font-weight: 550; font-size: 15px">
+                    <input type="checkbox"  onclick="checkUncheckNC(this)"/>Check All<br/>
+                    <br>
+                </div>
+            </td>
+            <!-- Display north constellation List -->
+            <div class="center-justified">
+                {{ selections_form.north_consts}}
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <!-- Title for North languages -->
+            <h4 class="text-center" style="font-weight: 550">Languages</h4>
+            <td>
+                <div style="text-align: center; font-weight: 550; font-size: 15px">
+                    <input type="checkbox"  onclick="checkUncheckNL(this)"/>Check All<br/>
+                    <br>
+                </div>
+            </td>
+                <ul class="list" style="padding: 0px; margin: 0px">
+                    {{ selections_form.north_langs}}
+                </ul>
+        </div>
+
+        <div class="col-lg-4" >
+            <!-- Title for North latitudes -->
+            <h4 class="text-center" style="font-weight: 550">Latitudes</h4>
+            <td>
+                <div style="text-align: center; font-weight: 550; font-size: 15px">
+                    <input type="checkbox"  onclick="checkUncheckNLt(this)"/>Check All<br/>
+                    <br>
+                </div>
+            </td>
+            <div class="center-justified">
+                {{ selections_form.north_lats }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Divide each column in three columns  -->
+    <div class="col-lg-6" style="border-left: 3px solid black; margin:0px; padding: 0px">
+
+        <h3 class="text-center" style="font-weight: 550">South Constellations</h3>
+
+        <div class="col-lg-4">
+            <!-- Title for South constellations -->
+            <h4 class="text-center" style="font-weight: 550">Constellations</h4>
+            <td>
+                <div style="text-align: center; font-weight: 550; font-size: 15px">
+                    <input type="checkbox"  onclick="checkUncheckSC(this)"/>Check All<br/>
+                    <br>
+                </div>
+            </td>
+            <div class="center-justified">
+                {{ selections_form.south_consts}}
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <!-- Title for South languages-->
+            <h4 class="text-center" style="font-weight: 550">Languages</h4>
+            <td>
+                <div style="text-align: center; font-weight: 550; font-size: 15px">
+                    <input type="checkbox"  onclick="checkUncheckSL(this)"/>Check All<br/>
+                    <br>
+                </div>
+            </td>
+            <div class="center-justified">
+                {{ selections_form.south_langs}}
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <!-- Title for South latotudes -->
+            <h4 class="text-center" style="font-weight: 550">Latitudes</h4>
+            <td>
+                <div style="text-align: center; font-weight: 550; font-size: 15px">
+                    <input type="checkbox"  onclick="checkUncheckSLt(this)"/>Check All<br/>
+                    <br>
+                </div>
+            </td>
+            <div class="center-justified">
+                {{ selections_form.south_lats }}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-12" style="margin-top: 4px"> 
+        <div class="col-lg-6">
+            <div class="col-lg-6"> 
+                <!--
+                <label for="select_everything"  style="font-size: 21px; font-weight:300">Select All Documents</label>
+                {{selections_form.select_everything}}
+                -->
+            </div>
+            <div class="col-lg-6"> 
+                <label for="download_charts"  style="font-size: 25px; font-weight:300">Download Charts</label>
+                {{selections_form.download_charts}}
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="text-center">
+                {{ selections_form.submit(class="btn btn-primary btn-lg") }}
+            </div>
+        </div>
+    </div>
+</form>
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+    function checkUncheckNC(main){
+        all = document.getElementsByName('north_consts');
+        for(var a=0;a<all.length;a++){
+            all[a].checked = main.checked;
+        }
+    }
+
+    function checkUncheckNL(main){
+        all = document.getElementsByName('north_langs');
+        for(var a=0;a<all.length;a++){
+            all[a].checked = main.checked;
+        }
+    }
+
+    function checkUncheckNLt(main){
+        all = document.getElementsByName('north_lats');
+        for(var a=0;a<all.length;a++){
+            all[a].checked = main.checked;
+        }
+    }
+
+    function checkUncheckSC(main){
+        all = document.getElementsByName('south_consts');
+        for(var a=0;a<all.length;a++){
+            all[a].checked = main.checked;
+        }
+    }
+
+    function checkUncheckSL(main){
+        all = document.getElementsByName('south_langs');
+        for(var a=0;a<all.length;a++){
+            all[a].checked = main.checked;
+        }
+    }
+
+    function checkUncheckSLt(main){
+        all = document.getElementsByName('south_lats');
+        for(var a=0;a<all.length;a++){
+            all[a].checked = main.checked;
+        }
+    }
+
+
+    </script>
+{% endblock %}
+
+{% endblock %}
+

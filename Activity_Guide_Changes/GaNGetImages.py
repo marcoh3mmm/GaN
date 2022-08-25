@@ -5,8 +5,8 @@ from shutil import rmtree
 
 # Create a new folder to download the images
 def create_image_dir():
-    save_path = os.getcwd() 
-    save_path = os.path.join(save_path + "\GaN\images")
+    save_path = os.getcwd()
+    save_path = os.path.join(save_path + "\images")
     rmtree(save_path)
     os.mkdir(save_path)
     return save_path
@@ -21,7 +21,7 @@ def transform_latitude(lat):
     return lat
 
 def images_links(constellations, latitudes):
-        # Get the url in GaN website where the images are located
+    # Get the url in GaN website where the images are located
     url = 'https://www.globeatnight.org/magcharts'
     gan = requests.get(url)
     
@@ -31,6 +31,7 @@ def images_links(constellations, latitudes):
     image = soup.find('div' , attrs= {"id" : "finder"}).find('img')
     #Get the link from the image
     image_first_link = str(image['src'])
+    image_const= image_first_link.split('/')[-4]
 
     images_links = []
     magnitudes = ["05", "15", "25", "35", "45", "55", "65", "75"]
@@ -38,7 +39,7 @@ def images_links(constellations, latitudes):
     for const in constellations:
         for lat in latitudes:
             for mag in magnitudes:
-                new_link = image_first_link.replace("hercules", const.lower().replace(" ", "-")).replace("10", transform_latitude(lat).replace("05", mag)).replace("05", mag)
+                new_link = image_first_link.replace(image_const, const.lower().replace(" ", "-")).replace("10", transform_latitude(lat).replace("05", mag)).replace("05", mag)
                 images_links.append(new_link)
     return images_links       
 
@@ -47,8 +48,7 @@ def images_links(constellations, latitudes):
 def images_download(link):
     #Change the path to the new folder
     new_path = os.getcwd()
-    new_path = os.path.join(new_path + "\GaN\images\\")
-
+    new_path = os.path.join(new_path + "\images\\")
     # Verify the status code of the link
     if requests.get(link).status_code == 200:
     # Save the images in a local folder for a later use with an easier name

@@ -17,7 +17,7 @@ from shutil import rmtree
 def import_south_data():
     # Define the path for the excel file
     excel_path = os.getcwd()
-    excel_path = os.path.join(excel_path + "\GaN\Activity_Guide_Changes\GaN_cons_and_dates.xlsx")
+    excel_path = os.path.join(excel_path + "\Activity_Guide_Changes\GaN_cons_and_dates.xlsx")
 
     # Get Data from the Excel File using Pandas
     # Capitalize  constellations names for a later comparison
@@ -152,16 +152,17 @@ def south_translations(dir_paths):
     year = dir_path.split('_')[-5]
     #thaiYear = int(year)+ 543
 
-    #Be sure to change the websites into the word files
+    # Be sure to change the websites into the word files
     website1 = "astro/maps/GaNight/2018/"
     website2 = "astro/maps/GaNight/2019/"
 
     
     # Define the Word file path as the original file
-    word_path = os.path.abspath("..\Gan\GaN\docs_to_change\GaN2018_ActivityGuide_Scorpius_S_")
+    word_path = os.getcwd()
+    word_path = os.path.join( word_path + "\docs_to_change\GaN2018_ActivityGuide_Scorpius_S_")
     working_doc = open_word_doc2(word_path + str(language_base) + ".docx")
 
-    # styles of each paragraph to kkep the original word styles
+    # styles for each paragraph to keep the original word styles
     obj_styles = working_doc.styles
     obj_char_style = obj_styles.add_style('GaN_style', WD_STYLE_TYPE.CHARACTER)
     obj_font = obj_char_style.font
@@ -185,7 +186,7 @@ def south_translations(dir_paths):
     obj_font3.color.rgb = RGBColor(0,0,128)
 
 
-    #Define the base language in deep_translator and translate it into de destiny language
+    # Define the base language in deep_translator and translate it into de destiny language
     if const_name != "Canis Major" :
         constellation_translated =GoogleTranslator(source ='english', target = language_base.lower()).translate(const_name +" constellation")
         date_translated = GoogleTranslator(source ='english', target = language_base.lower()).translate(South_data.get(const_name))

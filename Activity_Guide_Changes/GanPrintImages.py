@@ -22,7 +22,7 @@ def open_local_image(file_name):
     latitude = file_name.split('_')[-2]
 
     path = os.getcwd() 
-    path = os.path.join(path + "\GaN\images_local")
+    path = os.path.join(path + "\images_local")
 
     lat = transform_latitude(latitude)
 
@@ -88,7 +88,7 @@ def open_download_image(file_name):
     latitude = file_name.split('_')[-2]
 
     path = os.getcwd() 
-    path = os.path.join(path + "\GaN\images")
+    path = os.path.join(path + "\images")
 
     lat = transform_latitude(latitude)
 
@@ -101,7 +101,7 @@ def open_download_image(file_name):
     return paths_list
 
 
-#crops an image based on the magnitude, saves image as png
+# drops an image based on the magnitude, saves image as png
 def print_download_image(file_name):
     
     constellation = file_name.split('_')[-4]
@@ -117,6 +117,7 @@ def print_download_image(file_name):
     else:
         charts_dir = open_download_image(file_name)
 
+    # working on the tables in the files
     table1 = working_doc.tables[0]
     table1 = (table1.cell(1,0), table1.cell(1,2), table1.cell(4,0), table1.cell(4,2))
     i= 0

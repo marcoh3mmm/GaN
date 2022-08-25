@@ -18,7 +18,7 @@ from shutil import rmtree
 def import_north_data():
     # Define the path for the excel file
     excel_path = os.getcwd()
-    excel_path = os.path.join(excel_path + "\GaN\Activity_Guide_Changes\GaN_cons_and_dates.xlsx")
+    excel_path = os.path.join(excel_path + "\Activity_Guide_Changes\GaN_cons_and_dates.xlsx")
 
     # Get Data from the Excel File using Pandas
     # Capitalize  constellations names for a later comparison
@@ -65,7 +65,7 @@ def open_word_doc1(file_name):
 #######################################################################################
 
 def north_translations(dir_paths):
-    #updating northern hemisphere information (constellation, date, text displayed to user)
+    # updating northern hemisphere information (constellation, date, text displayed to user)
     north_constellation_replacement = {
             
             "Catalan" : "Perseu",
@@ -265,7 +265,8 @@ def north_translations(dir_paths):
 
     
     # Define the Word file path as the original file
-    word_path = os.path.abspath("..\Gan\GaN\docs_to_change\GaN2018_ActivityGuide_Perseus_N_")
+    word_path = os.getcwd()
+    word_path = os.path.join( word_path + "\docs_to_change\GaN2018_ActivityGuide_Perseus_N_")
     working_doc = open_word_doc1(word_path + str(language_base) + ".docx")
     
     # Chinese in not in the dictionary of deep_translator, is better "chinese (traditional)"
@@ -274,7 +275,7 @@ def north_translations(dir_paths):
     else:
         language_base = "chinese (traditional)"
 
-    # styles of each paragraph to kkep the original word styles
+    # styles for each paragraph to keep the original word styles
     obj_styles = working_doc.styles
     obj_char_style = obj_styles.add_style('GaN_style', WD_STYLE_TYPE.CHARACTER)
     obj_font = obj_char_style.font
@@ -298,7 +299,7 @@ def north_translations(dir_paths):
     obj_font3.color.rgb = RGBColor(0,0,128)
 
     
-    #Define the base language in deep_translator and translate it into de destiny language
+    # Define the base language in deep_translator and translate it into de destiny language
     if language_base == "German":
         constellation_translated =GoogleTranslator(source ='english', target = language_base.lower()).translate("constellation " + const_name)
     elif language_base == "Polish":

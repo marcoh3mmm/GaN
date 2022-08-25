@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<!-- Bring Bootstrap-->
+{% extends 'bootstrap/base.html' %}
+
+{% block head %}
+    {{ super() }}
+
+    <title>
+        {% block title %}GaN |{% endblock %}
+    </title>
+    <!-- Viewport normal-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- work with the css main file on the app folders-->
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/main.css')}}">
+    <link rel="icon" href="data:,">
+    
+{% endblock %}
+
+{% block body %}
+    <!-- Bring navbar-->
+    {% block navbar %}
+        {% include 'navbar.html' %}
+    {%endblock%}
+
+    <!-- Flash the messages as warning alerts-->
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissable" style="font-size: 20px">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- Import the javascript file that remains the server alive -->
+    {%block scripts %}
+       {{ super() }}
+       <script src="{{ url_for('static', filename='js/keep.alive.js')}}"></script>
+    {% endblock %}
+{% endblock %}

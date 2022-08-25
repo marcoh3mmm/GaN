@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<!-- import the base -->
+{% extends 'base.html' %}
+
+<!-- Display the title for Home page -->
+{% block title %}
+    {{ super()}}
+    Home
+{%endblock%}
+
+
+{% block content %}
+<!-- Display the text title for the app  -->
+    <br>
+    <br>
+    <h1>GaN Activity Guides</h1>
+    <h1>Generator</h1>
+    
+    <br>
+    <br>
+    <br>
+    
+    <!-- Display the buttons like links -->    
+    <div class="center-block">
+        <a href="{{ url_for('selections2') }}">
+            <button type="button" class="btn btn-default btn-lg ">Generate Activity Guides</button>
+        </a>
+        <br>
+    </div>
+    
+    <div class="center-block">
+        <a href="{{ url_for('xlsx_file') }}">
+            <button type="button" class="btn btn-default btn-lg">Campaign Dates</button>
+        </a>
+        <br> 
+    </div>
+    <div class="center-block">
+        <a href="{{ url_for('docx_files') }}">
+            <button type="button" class="btn btn-default btn-lg">Modify base documents</button>
+        </a>
+        <br>
+    </div>
+    <div class="center-block">
+        <a href="{{ url_for('pdf_files') }}">
+            <button type="button" class="btn btn-default btn-lg ">Consult pdf files</button>
+        </a>
+        <br>
+    </div>
+        
+{% endblock %}
+
+

@@ -3,17 +3,17 @@ from datetime import datetime
 import comtypes.client
 
 
-
+# Create the PDF Folder where the new files are going to be created.
 def create_pdf_folder():
 
     current_day_hour = datetime.now()
-
     save_path = os.getcwd()
-    save_path = os.path.join(save_path + "\GaN\pdf_files\Activity_Guides_" + current_day_hour.strftime('%Y%m%d_%H%M%S'))
+    save_path = os.path.join(save_path + "\pdf_files\Activity_Guides_" + current_day_hour.strftime('%Y%m%d_%H%M%S'))
     if not os.path.exists(save_path):
         os.makedirs(save_path)
     return save_path
 
+# Create the folders for each constellation
 def create_pdf_dir(cardinal, year, constellations, pdf_folder):
     
     paths = []
