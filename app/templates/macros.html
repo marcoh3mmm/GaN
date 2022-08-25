@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 
-<!--
-<script src="{{ url_for('static', filename='js/keep.alive.js')}}"></script>
--->
-
+<!-- Get the title for Home page -->
 {% macro render_north_constellations(constellation) %}
     <li>{{constellation}}</li>
 {% endmacro %}
 
+<!-- Get north Languages List -->
 {% macro render_north_languages(language) %}
     <li>{{language}}</li>
 {% endmacro %}
 
+<!-- Get north Latitudes List -->
 {% macro render_latitudes_north(lat) %}
     <li>{{lat}}</li>
 {% endmacro %}
 
+<!-- Get south constellations List -->
 {% macro render_south_constellations(constellation) %}
     <li>{{constellation}}</li>
 {% endmacro %}
 
+<!-- Get south languages List -->
 {% macro render_south_languages(language) %}
     <li>{{language}}</li>
 {% endmacro %}
 
+<!-- Get south latitudes List -->
 {% macro render_latitudes_south(lat) %}
     <li>{{lat}}</li>
 {% endmacro %}

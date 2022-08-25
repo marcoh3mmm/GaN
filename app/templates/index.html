@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 
+<!-- import the base -->
 {% extends 'base.html' %}
 
-
+<!-- Display the title for Home page -->
 {% block title %}
     {{ super()}}
-    Main
+    Home
 {%endblock%}
 
 
 {% block content %}
+<!-- Display the text title for the app  -->
     <br>
     <br>
     <h1>GaN Activity Guides</h1>
@@ -19,9 +21,7 @@
     <br>
     <br>
     
-    
-    
-
+    <!-- Display the buttons like links -->    
     <div class="center-block">
         <a href="{{ url_for('selections2') }}">
             <button type="button" class="btn btn-default btn-lg ">Generate Activity Guides</button>

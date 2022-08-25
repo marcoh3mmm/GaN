@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-
+<!-- Bring the base render -->
 {% extends 'base.html' %}
 
+<!-- title of the page -->
 {% block title %}
     {{ super()}}
     Not Found
 {%endblock%}
 
+<!-- display the message error-->
 {% block content %}
     <h1>Sorry, this page has not been found</h1>
     <h3>{{ error}}</h3>

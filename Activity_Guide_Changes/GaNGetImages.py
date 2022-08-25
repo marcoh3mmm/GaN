@@ -21,7 +21,7 @@ def transform_latitude(lat):
     return lat
 
 def images_links(constellations, latitudes):
-        # Get the url in GaN website where the images are located
+    # Get the url in GaN website where the images are located
     url = 'https://www.globeatnight.org/magcharts'
     gan = requests.get(url)
     

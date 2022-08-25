@@ -1,22 +1,23 @@
+/* Style for all the application */
 html *{
     font-family: Helvetica, Neue, Arial, sans-serif;
     font-weight: 300;
     }
 
     
-    
+/* Style for the main title of the application */    
 h1 {
         text-align:center;
     }
 
-
+/* Style for the buttons to make them appear in the center */
 .center-block {
     display: block;
     margin: 1rem auto;
     text-align: center;
     }
 
-
+/* Style for the buttons*/
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
     background-color: #b3b5ca;
     border-color: #31347B;
@@ -36,6 +37,7 @@ h1 {
     width: 300px;
 }
 
+/* Style for the navigation bar */
 .navbar {
     min-height: 140px;
     background-color: black;
@@ -56,13 +58,14 @@ h1 {
         line-height:80px;   
     }
 
-    
+/* Style for the Lists to maj¿ke them appear in the center*/    
 .center-justified {
     margin-left: 33px;
     text-align: justify;
     width: 16em;
     }
 
+/* Style for the Lists */    
 ul{
     list-style: none;
 }

@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import BooleanField,SubmitField, SelectMultipleField,SelectField,widgets
 
+# set the initial data to display in the lists
 years=[2020,2021,2022,2023,2024,2025]
 north_consts = ["Perseus", "Leo", "Bootes", "Cygnus", "Pegasus", "Orion", "Hercules"]
 north_langs= ["Catalan", "Chinese", "Czech", "English", "Finnish", "French", "Galician", "German", "Greek", "Indonesian", "Japanese", "Polish", "Portuguese", "Romanian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "Thai"]
@@ -10,8 +11,7 @@ south_consts = ["Orion","Canis Major", "Crux", "Leo", "Bootes", "Scorpius", "Her
 south_langs = ["English", "French", "Indonesian", "Portuguese", "Spanish"]
 south_lats = ["0", "10S", "20S", "30S", "40S"]
 
-
-
+# function needed to get a checkbox on each item of the list. It works like a widget.
 def select_multi_checkbox(field, ul_class='', **kwargs):
     kwargs.setdefault('type', 'checkbox')
     field_id = kwargs.pop('id', field.id)
@@ -26,7 +26,7 @@ def select_multi_checkbox(field, ul_class='', **kwargs):
     html.append('</ul>')
     return ''.join(html)
 
-
+# Set the form to render on the HTML file.
 class SelectionsForm(FlaskForm):
     year=SelectField('Select Year',choices=(years))
     north_consts = SelectMultipleField('Constellations',choices=(north_consts), widget=select_multi_checkbox)

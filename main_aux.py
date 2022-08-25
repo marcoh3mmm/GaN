@@ -2,7 +2,7 @@ import os
 import time
 import multiprocessing
 import Activity_Guide_Changes as agc
-from flask import make_response, redirect, render_template, flash, url_for
+from flask import redirect, flash, url_for
 
 def flash_mess(north_consts, north_langs, north_lats, south_consts, south_langs, south_lats):
     if len(north_consts) > 0 and len(north_langs) > 0 and len(north_lats) > 0 and len(south_consts) > 0 and len(south_langs) > 0 and len(south_lats) > 0:
@@ -193,7 +193,7 @@ def excecute_main(year, north_consts, north_langs, north_lats, south_consts, sou
             # Delete the word files
             agc.remove_docs(total_docx_paths)
 
-            os.chdir('main')
+            #os.chdir('main')
             
             # Finishing time counter and getting time of execution
             finish = time.time() - start

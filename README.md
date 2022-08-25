@@ -116,7 +116,7 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
 
 ## Special thanks
 
-I want to especially thank Javier Enciso, Juan David Vargas and the Enciso Systems team.
+I want to especially thank Javier Enciso, Juan David Vargas, Alejandro Vivas and the entire Enciso Systems team.
 
 
 ## Project status

@@ -1,4 +1,4 @@
-
+/* Script needed to keep the server alive when using as GUI */
 async function getRequest(url='') {
     const response = await fetch(url, {
       method: 'GET',

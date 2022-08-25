@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 
-<!--
-<script src="{{ url_for('static', filename='js/keep.alive.js')}}"></script>
--->
-
-
+<!-- import base, macros and bootstrap -->
 {% extends 'base.html' %}
 {% import 'macros.html' as macros %}
 {% import 'bootstrap/wtf.html' as wtf %} 
 
+<!-- name of the page -->
 {% block title %}
     {{ super()}}
     Selections
@@ -16,31 +13,38 @@
 
 {% block content %}
 
+<!-- display the form-->
 <form action="{{ url_for('selections2')}}" method="POST">
     {{ selections_form.hidden_tag() }}
+    <!-- Display the Years List -->
     <div class="col-lg-12 text-center" style="margin-bottom: 4px;font-size: 20px; padding: 0px">
         <label  for ="year"  style="font-size: 24px; font-weight:300">Select Year</label>
         {{selections_form.year}}       
     </div>
 
-
+    <!-- Divide the screen in two columns  -->
     <div class="col-lg-6" style="margin:0px; padding: 0px">
         <h3 class="text-center" style="font-weight: 550">North Constellations</h3>
 
+        <!-- Divide each column in three columns  -->
         <div class="col-lg-4">
+            <!-- Title for North constellations -->
             <h4 class="text-center" style="font-weight: 550">Constellations</h4>
+            <!-- Display check all  -->
             <td>
                 <div style="text-align: center; font-weight: 550; font-size: 15px">
                     <input type="checkbox"  onclick="checkUncheckNC(this)"/>Check All<br/>
                     <br>
                 </div>
             </td>
+            <!-- Display north constellation List -->
             <div class="center-justified">
                 {{ selections_form.north_consts}}
             </div>
         </div>
 
         <div class="col-lg-4">
+            <!-- Title for North languages -->
             <h4 class="text-center" style="font-weight: 550">Languages</h4>
             <td>
                 <div style="text-align: center; font-weight: 550; font-size: 15px">
@@ -54,6 +58,7 @@
         </div>
 
         <div class="col-lg-4" >
+            <!-- Title for North latitudes -->
             <h4 class="text-center" style="font-weight: 550">Latitudes</h4>
             <td>
                 <div style="text-align: center; font-weight: 550; font-size: 15px">
@@ -67,11 +72,13 @@
         </div>
     </div>
 
-
+    <!-- Divide each column in three columns  -->
     <div class="col-lg-6" style="border-left: 3px solid black; margin:0px; padding: 0px">
+
         <h3 class="text-center" style="font-weight: 550">South Constellations</h3>
 
         <div class="col-lg-4">
+            <!-- Title for South constellations -->
             <h4 class="text-center" style="font-weight: 550">Constellations</h4>
             <td>
                 <div style="text-align: center; font-weight: 550; font-size: 15px">
@@ -85,6 +92,7 @@
         </div>
 
         <div class="col-lg-4">
+            <!-- Title for South languages-->
             <h4 class="text-center" style="font-weight: 550">Languages</h4>
             <td>
                 <div style="text-align: center; font-weight: 550; font-size: 15px">
@@ -98,6 +106,7 @@
         </div>
 
         <div class="col-lg-4">
+            <!-- Title for South latotudes -->
             <h4 class="text-center" style="font-weight: 550">Latitudes</h4>
             <td>
                 <div style="text-align: center; font-weight: 550; font-size: 15px">
