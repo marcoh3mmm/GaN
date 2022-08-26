@@ -119,7 +119,7 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
   * flaskwebgui
 
 ## How it works 
-1. In the folder you have cloned the repository or dowload it, use the command prompt to execute "python main.py" 
+1. In the folder where you have cloned the repository or dowload it, use the command prompt to execute "python main.py" 
   ![Command_prompt](./images_local/support_images/Command_prompt.png)
 
 2. Then the app will be opened in the following screen:
@@ -135,8 +135,8 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
    ![Selections_Page](./images_local/support_images/Selections_page.png)
 
    1. Valid Entries: at least one checkbox must be checked on the "Constellations", "Languages", and "Latitudes" for the Nort or South.
-  Hint1: You can generate Activity Guides only for north Constellations, without checcking any boxes on the south Constellations.
-  Hint2: You can generate Activity Guides only for south Constellations, without checcking any boxes on the north Constellations.
+  Hint1: You can generate Activity Guides only for north Constellations, without checking any boxes on the south Constellations.
+  Hint2: You can generate Activity Guides only for south Constellations, without checking any boxes on the north Constellations.
   ![valid_entries](./images_local/support_images/valid_entries.png)
   ![valid_entries1](./images_local/support_images/valid_entries1.png)
 
