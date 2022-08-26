@@ -135,14 +135,13 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
    ![Selections_Page](./images_local/support_images/Selections_page.png)
 
    1. Valid Entries: at least one checkbox must be checked on the "Constellations", "Languages", and "Latitudes" for the Nort or South.
-  Hint1: You can generate Activity Guides only for north Constellations, without checking any boxes on the south Constellations.
-  Hint2: You can generate Activity Guides only for south Constellations, without checking any boxes on the north Constellations.
-  ![valid_entries](./images_local/support_images/valid_entries.png)
-  ![valid_entries1](./images_local/support_images/valid_entries1.png)
-
-   1. Please avoid to do this:
-   ![no_valid_entries1](./images_local/support_images/no_valid_entries1.png)
-   ![no_valid_entries2](./images_local/support_images/no_valid_entries2.png)
+      1. Hint1: You can generate Activity Guides only for north Constellations, without checking any boxes on the south Constellations.
+      2. Hint2: You can generate Activity Guides only for south Constellations, without checking any boxes on the north Constellations.
+    ![valid_entries](./images_local/support_images/valid_entries.png)
+    ![valid_entries1](./images_local/support_images/valid_entries1.png)
+   2. Please avoid to do this:
+    ![no_valid_entries1](./images_local/support_images/no_valid_entries1.png)
+    ![no_valid_entries2](./images_local/support_images/no_valid_entries2.png)
 
    1. You can change the year by click on "Select Year".
 
@@ -152,22 +151,22 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
    1. Now press "Submit" Button, and finally the folder with the new Activity Guides will be open.
   
 5.  Press the Button "Campaign Dates" and the .xlsx file will be opened:
-    a. Please don't change the names of the constellations.
-    b. The month's names must be introduced completely without symbols.
-    c. The dates must be introduced in number format using only "-" to indicate a period of time.
+    1.  Please don't change the names of the constellations.
+    2.  The month's names must be introduced completely without symbols.
+    3.  The dates must be introduced in number format using only "-" to indicate a period of time.
   ![xlsx_image](./images_local/support_images/xlsx_image.png)
 
 6. Press the Button "Modify base documents" and the folder with the .docx files will be opened:
-    a. Please don't change the headers where the dates are on any of the pages.
-    b. Don't change the first paragraph.
-    c. Don't edit the Charts.
+   1. Please don't change the headers where the dates are on any of the pages.
+   2. Don't change the first paragraph.
+   3. Don't edit the Charts.
     ![edit_docx1](./images_local/support_images/edit_docx1.png)
     ![edit_docx2](./images_local/support_images/edit_docx2.png)
   
 7. Press the Button "Consult pdf files" and the folder with the .pdf files will be opened:
-    a. Each folder has two numbers: one is the date and the another is the hour when the folder has been created.
-    b. Each folder is unique.
-    c. You can remove all the created folders , but no the "pdf_files" folder.
+   1. Each folder has two numbers: one is the date and the another is the hour when the folder has been created.
+   2. Each folder is unique.
+   3. You can remove all the created folders , but no the "pdf_files" folder.
     ![pdf_folder1](./images_local/support_images/pdf_folder1.png)
   
 8. Inactivity:
@@ -178,8 +177,6 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
     Close the .xlsx file, and all the .docx files before submit the form.
   
 
-
-   
 
 ## Sources
 * Python docx documentation: https://python-docx.readthedocs.io/en/latest/
