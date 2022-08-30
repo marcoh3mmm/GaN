@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<!-- import the base -->
+{% extends 'base.html' %}
+
+<!-- Display the title for Home page -->
+{% block title %}
+    {{ super()}}
+    About
+{%endblock%}
+
+
+{% block content %}
+
+    <!-- Display the credits -->    
+    <div class="center-block">
+        <h2>Developer:</h2>
+        <h4>Marco Moreno</h4>
+        <br>
+
+        <h2>Technical Support:</h2>
+        <h4>Juan David Vargas</h4>
+        <br>
+
+        <h2>Technical Project Manager:</h2>
+        <h4>Javier Enciso</h4>
+        <br>
+
+        <h2>Special Thanks:</h2>
+        <h4>Connie Walker</h4>
+        <h4>Mark Newhouse</h4>
+        <h4>Elliot Krisiel</h4>
+        <h4>Noirlab Team</h4>
+        <br>
+    </div>
+    
+        
+{% endblock %}

@@ -119,7 +119,12 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
   * flaskwebgui
 
 ## How it works 
-1. In the folder where you have cloned the repository or dowload it, use the command prompt to execute "python main.py" 
+1. Install python, you can dopwloade it from: https://www.python.org/downloads/
+   
+2. In the folder where you have cloned the repository or dowload it, use the command prompt to execute "pip install -r requirements.txt"
+  ![pip_install](./images_local/support_images/pip_install.png)
+  
+3. In the folder where you have cloned the repository or dowload it, use the command prompt to execute "python main.py" 
   ![Command_prompt](./images_local/support_images/Command_prompt.png)
 
 2. Then the app will be opened in the following screen:
@@ -173,7 +178,7 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
     After 5 minutes it will close automatically, just execute python main.py from the command promt.
   ![Inactivity](./images_local/support_images/Inactivity.png)
 
-9.  Warning:
+9.  **Warning:**
     Close the .xlsx file, and all the .docx files before submit the form.
   
 

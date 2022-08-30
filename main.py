@@ -47,7 +47,11 @@ def pdf_files():
     pdf_path = os.getcwd()
     pdf_path = os.path.join(pdf_path + "\pdf_files")
     os.startfile(pdf_path)
-    return render_template('index.html')   
+    return render_template('index.html')
+
+@app.route('/about', methods=["GET", 'POST'])
+def about():
+    return render_template('about.html')   
 
 # Render the selections form
 @app.route('/selections2', methods=["GET", 'POST'])

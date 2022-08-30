@@ -31,19 +31,26 @@
     
     <div class="center-block">
         <a href="{{ url_for('xlsx_file') }}">
-            <button type="button" class="btn btn-default btn-lg">Campaign Dates</button>
+            <button type="button" class="btn btn-default btn-lg">Edit Campaign Dates</button>
         </a>
         <br> 
     </div>
     <div class="center-block">
         <a href="{{ url_for('docx_files') }}">
-            <button type="button" class="btn btn-default btn-lg">Modify base documents</button>
+            <button type="button" class="btn btn-default btn-lg">Edit Base Documents</button>
         </a>
         <br>
     </div>
     <div class="center-block">
         <a href="{{ url_for('pdf_files') }}">
-            <button type="button" class="btn btn-default btn-lg ">Consult pdf files</button>
+            <button type="button" class="btn btn-default btn-lg ">Browse pdf Files</button>
+        </a>
+        <br>
+    </div>
+
+    <div class="center-block">
+        <a href="{{ url_for('about') }}">
+            <button type="button" class="btn btn-default btn-lg ">About</button>
         </a>
         <br>
     </div>
