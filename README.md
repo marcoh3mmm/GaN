@@ -105,7 +105,7 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
 ## Requirements
 * Windows 8 or later.
 * Internet connection.
-* Python 6 or later.
+* Python 3.6 or later.
 * MSOffice 2016 or later (.docx and .xlsx).
 * Python 3 (Install):
   * deep_translator
@@ -123,7 +123,7 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
    
 2. In the folder where you have cloned the repository or dowload it, use the command prompt to execute "pip install -r requirements.txt"
   ![pip_install](./images_local/support_images/pip_install.png)
-  
+
 3. In the folder where you have cloned the repository or dowload it, use the command prompt to execute "python main.py" 
   ![Command_prompt](./images_local/support_images/Command_prompt.png)
 
@@ -196,7 +196,7 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
 
 ## Special thanks
 
-I want to especially thank Javier Enciso, Juan David Vargas, Alejandro Vivas and the entire Enciso Systems team.
+I want to especially thank Connie Walker, Mark Newhose, Elliot Krisiel, Javier Enciso, Juan David Vargas, Alejandro Vivas, and the Noirlab and Enciso Systems teams.
 
 
 ## Project status
