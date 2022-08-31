@@ -53,13 +53,11 @@ The 20 Languages for the GaN Activity guides are:
 ### Northern Hemisphere:
 * Bootes
 * Cygnus
-* Gemini
 * Hercules
 * Leo
 * Orion
 * Pegasus
 * Perseus
-* Taurus
 
 ### Southern Hemisphere:
 * Bootes
@@ -70,10 +68,8 @@ The 20 Languages for the GaN Activity guides are:
 * Leo
 * Orion
 * Pegasus
-* Perseus
 * Sagittarius
 * Scorpius
-* Taurus
 
 ## Technologies
 * MS Word
@@ -94,6 +90,7 @@ The 20 Languages for the GaN Activity guides are:
   * pandas
   * BeautifulSoup
   * Requests
+  * comtypes
   
 * Flask:
   * flask_wtf
@@ -117,61 +114,64 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
   * flask_wtf
   * wtforms
   * flaskwebgui
+  * Flask-Bootstrap
+  * comtypes
 
 ## How it works 
-1. Install python, you can dopwloade it from: https://www.python.org/downloads/
+1. Install python, you can download it from: https://www.python.org/downloads/
    
-2. In the folder where you have cloned the repository or dowload it, use the command prompt to execute "pip install -r requirements.txt"
+2. In the folder where you have cloned the repository or downloaded it, use the command prompt to execute "pip install -r requirements.txt"
   ![pip_install](./images_local/support_images/pip_install.png)
 
-3. In the folder where you have cloned the repository or dowload it, use the command prompt to execute "python main.py" 
+3. In the folder where you have cloned the repository or downloaded it, use the command prompt to execute "python main.py" 
   ![Command_prompt](./images_local/support_images/Command_prompt.png)
 
-2. Then the app will be opened in the following screen:
+2. Then, the app will be opened in the following screen:
    ![Home_screen](./images_local/support_images/Home_screen.png)
 
-3. the 4 Button functionalities:
+3. the 5 Button functionalities:
    1. Generate Activity Guides: Go to the Selections page to generate the Activity guides.
-   2. Campaign Dates: Open the .xlsx file to change the constellations dates
-   3. Modify base documents: Go to the folder that contains the .docx original files.
-   4. Consult pdf files: Go to the folder where the .pdf files you have been created.
+   2. Edit Campaign Dates: Open the .xlsx file to change the constellations dates
+   3. Edit Base Documents: Go to the folder that contains the .docx original files.
+   4. Browse pdf Files: Go to the folder where the .pdf files you created are located.
+   5. About: information about the application's development.
    
 4. Press the Button "Generate Activity Guides" to see the following page: 
    ![Selections_Page](./images_local/support_images/Selections_page.png)
 
-   1. Valid Entries: at least one checkbox must be checked on the "Constellations", "Languages", and "Latitudes" for the Nort or South.
+   1. Valid Entries: at least one checkbox must be checked on "Constellations", "Languages", and "Latitudes" for North or South constellations.
       1. Hint1: You can generate Activity Guides only for north Constellations, without checking any boxes on the south Constellations.
       2. Hint2: You can generate Activity Guides only for south Constellations, without checking any boxes on the north Constellations.
     ![valid_entries](./images_local/support_images/valid_entries.png)
     ![valid_entries1](./images_local/support_images/valid_entries1.png)
-   2. Please avoid to do this:
+   2. Avoid doing this:
     ![no_valid_entries1](./images_local/support_images/no_valid_entries1.png)
     ![no_valid_entries2](./images_local/support_images/no_valid_entries2.png)
 
-   1. You can change the year by click on "Select Year".
+   3. You can change the year by clicking on "Select Year".
 
-   2. If The "Download Charts" box is checked you will obtain the latest magnitudes charts from the website:
+   4. If The "Download Charts" box is checked, you will obtain the latest magnitudes charts from the website:
    Note: It will take a few more time to generate the activity guides.
 
-   1. Now press "Submit" Button, and finally the folder with the new Activity Guides will be open.
+   1. Now press "Submit" Button, and finally the folder with the new Activity Guides will be opened.
   
-5.  Press the Button "Campaign Dates" and the .xlsx file will be opened:
+5.  Press the Button "Edit Campaign Dates" and the .xlsx file will be opened:
     1.  Please don't change the names of the constellations.
-    2.  The month's names must be introduced completely without symbols.
+    2.  The months' names must be introduced completely without symbols.
     3.  The dates must be introduced in number format using only "-" to indicate a period of time.
   ![xlsx_image](./images_local/support_images/xlsx_image.png)
 
-6. Press the Button "Modify base documents" and the folder with the .docx files will be opened:
+6. Press the Button "Edit Base Documents" and the folder with the .docx files will be opened:
    1. Please don't change the headers where the dates are on any of the pages.
    2. Don't change the first paragraph.
    3. Don't edit the Charts.
     ![edit_docx1](./images_local/support_images/edit_docx1.png)
     ![edit_docx2](./images_local/support_images/edit_docx2.png)
   
-7. Press the Button "Consult pdf files" and the folder with the .pdf files will be opened:
-   1. Each folder has two numbers: one is the date and the another is the hour when the folder has been created.
+7. Press the Button "Browse pdf Files" and the folder with the .pdf files will be opened:
+   1. Each folder has two numbers: one is the date and the other is the hour when the folder has been created.
    2. Each folder is unique.
-   3. You can remove all the created folders , but no the "pdf_files" folder.
+   3. You can remove all the created folders , but not the "pdf_files" folder.
     ![pdf_folder1](./images_local/support_images/pdf_folder1.png)
   
 8. Inactivity:
@@ -179,7 +179,7 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
   ![Inactivity](./images_local/support_images/Inactivity.png)
 
 9.  **Warning:**
-    Close the .xlsx file, and all the .docx files before submit the form.
+    Close the .xlsx file, and all the .docx files before submitting the form.
   
 
 

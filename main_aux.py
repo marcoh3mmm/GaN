@@ -19,7 +19,7 @@ def flash_mess(north_consts, north_langs, north_lats, south_consts, south_langs,
         return redirect(url_for('selections2'))
     
     else:
-        flash('To get an Activity guide, you must select at least one Constellation, one Language, and one Latitude simultaneously, in the North or the South')
+        flash('To get an Activity guide, you must select at least one Constellation, one Language, and one Latitude simultaneously, in the North or the South constellations')
         return redirect(url_for('selections2'))
 
     
