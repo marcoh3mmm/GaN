@@ -1,6 +1,6 @@
 import os 
 from datetime import datetime
-import win32com.client
+import comtypes.client
 
 
 
@@ -51,7 +51,7 @@ def print_pdf(path):
     name = pdf_path.split('\\')[-1]
 
     try:
-        word = win32com.client.Dispatch('Word.Application')
+        word = comtypes.client.CreateObject('Word.Application')
         word.Visible = True
         doc = word.Documents.Open(path)
         doc.SaveAs(pdf_path, FileFormat=wdFormatPDF)

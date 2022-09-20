@@ -8,4 +8,4 @@ requests
 Flask-WTF
 WTForms
 Flask-Bootstrap
-pywin32
+comtypes

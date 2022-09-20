@@ -90,7 +90,7 @@ The 20 Languages for the GaN Activity guides are:
   * pandas
   * BeautifulSoup
   * Requests
-  * pywin32
+  * comtypes
   
 * Flask:
   * flask_wtf
@@ -115,7 +115,7 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
   * wtforms
   * flaskwebgui
   * Flask-Bootstrap
-  * pywin32
+  * comtypes
 
 ## How it works 
 1. Install python, you can download it from: https://www.python.org/downloads/
