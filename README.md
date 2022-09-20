@@ -120,7 +120,9 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
 ## How it works 
 1. Install python, you can download it from: https://www.python.org/downloads/
    
-2. In the folder where you have cloned the repository or downloaded it, use the command prompt to execute "pip install -r requirements.txt"
+2. Download the application from https://github.com/marcoh3mmm/GaN
+   
+3. In the folder where you have cloned the repository or downloaded it, use the command prompt to execute "pip install -r requirements.txt"
   ![pip_install](./images_local/support_images/pip_install.png)
 
 3. In the folder where you have cloned the repository or downloaded it, use the command prompt to execute "python main.py" 
