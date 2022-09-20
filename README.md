@@ -90,7 +90,7 @@ The 20 Languages for the GaN Activity guides are:
   * pandas
   * BeautifulSoup
   * Requests
-  * comtypes
+  * pywin32
   
 * Flask:
   * flask_wtf
