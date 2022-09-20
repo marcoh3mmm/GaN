@@ -1,6 +1,7 @@
 import os 
 from datetime import datetime
-import comtypes.client
+import win32com.client
+
 
 
 # Create the PDF Folder where the new files are going to be created.
@@ -50,7 +51,7 @@ def print_pdf(path):
     name = pdf_path.split('\\')[-1]
 
     try:
-        word = comtypes.client.CreateObject('Word.Application')
+        word = win32com.client.Dispatch('Word.Application')
         word.Visible = True
         doc = word.Documents.Open(path)
         doc.SaveAs(pdf_path, FileFormat=wdFormatPDF)

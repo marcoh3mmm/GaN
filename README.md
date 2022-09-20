@@ -115,7 +115,7 @@ The charts are taken from the website "https://www.globeatnight.org/magcharts"
   * wtforms
   * flaskwebgui
   * Flask-Bootstrap
-  * comtypes
+  * pywin32
 
 ## How it works 
 1. Install python, you can download it from: https://www.python.org/downloads/
